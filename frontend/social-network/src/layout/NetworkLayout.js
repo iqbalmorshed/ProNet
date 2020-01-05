@@ -15,7 +15,7 @@ import Footer from './Footer';
 
 
 const mainFeaturedPost = {
-  title: 'A Blog powered by Django and React',
+  title: 'The social network powered by Django and React',
   description:
     "The efficiency of Django and the beuty of React can give rise to new era of web development",
   image: 'https://source.unsplash.com/random',
