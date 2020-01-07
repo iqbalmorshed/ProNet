@@ -22,8 +22,8 @@ function Username(props) {
             autoFocus
             value={username}
             onChange={handleChange}
-            error={error}
-            helperText={error}
+            error={error? true:false}
+            helperText={"username and/or password is correct"}
         />
     )
 }

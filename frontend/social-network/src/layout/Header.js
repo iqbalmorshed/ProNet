@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { Link as RouterLink } from 'react-router-dom'
 import { authContext } from '../context/authStore';
+import { attemptLogout } from '../context/auth'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -29,15 +30,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
   const classes = useStyles();
-  const [{ isLoggedIn, username }] = useContext(authContext)
+  const [{ token, username }, authDispatch] = useContext(authContext)
   const { sections, title } = props;
-  const user_name = isLoggedIn ? username : 'User'
-  console.log("header: isloggedIN", isLoggedIn, "user_name", user_name)
+  const user_name = token ? username : 'User'
 
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
         <Button size="small">Hi, {user_name}!</Button>
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={() => {
+            attemptLogout(authDispatch)
+          }}
+        >
+          Logout
+        </Button>
         <Typography
           component="h2"
           variant="h5"

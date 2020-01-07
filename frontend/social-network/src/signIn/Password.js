@@ -21,8 +21,8 @@ function Password(props) {
             autoComplete="current-password"
             value = {password}
             onChange = {handleChange}
-            error = {error}
-            helperText = {error}
+            error={error? true:false}
+            helperText={"username and/or password is correct"}
         />
     )
 }

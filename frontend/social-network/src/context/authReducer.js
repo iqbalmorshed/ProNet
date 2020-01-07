@@ -1,41 +1,41 @@
 import * as actionTypes from './authActionTypes'
 
 const initialAuthState = {
-    isLoggedIn: false,
+    token: null,
     username: '',
-    error: '',
+    error: null,
     loading: false,
 }
 
 const authReducer = (state, action) => {
-    console.log("action:", action)
+    //console.log("action:", action)
     switch (action.type) {
         case actionTypes.AUTH_START:
             return {
-                isLoggedIn: false,
+                token: null,
                 username: '',
-                error: '',
+                error: null,
                 loading: true,
             }
-        case actionTypes.LOGIN:
+        case actionTypes.AUTH_SUCCESS:
             return {
-                isLoggedIn: true,
+                token: action.payload.token,
                 username: action.payload.username,
-                error: '',
+                error: null,
                 loading: false,
             }
-        case actionTypes.LOGIN_ERROR:
+        case actionTypes.AUTH_FAIL:
             return {
-                isLoggedIn: false,
+                token: null,
                 username: '',
                 error: action.payload.error,
                 loading: false,
             }
-        case actionTypes.LOGOUT:
+        case actionTypes.AUTH_LOGOUT:
             return {
-                isLoggedIn: false,
+                token: null,
                 username: '',
-                error: '',
+                error: null,
                 loading: false
             }
         default:

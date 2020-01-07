@@ -6,11 +6,9 @@ import SignInForm from './SignInForm'
 
 function SignInPanel() {
 
-    const [{ isLoggedIn, error }, authDispatch] = useContext(authContext)
+    const [{ token}, ] = useContext(authContext)
 
-    console.log("in SignInPanel:", isLoggedIn, error)
-
-    return isLoggedIn ? null : <SignInForm />
+    return token ? null : <SignInForm />
 
 }
 

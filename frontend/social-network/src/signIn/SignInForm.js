@@ -14,7 +14,7 @@ import Username from './Username'
 import Password from './Password'
 import Registration from './Registration'
 import { useStyles } from './styles'
-import attemptLogin from './fakeAuth'
+import { attemptLogin } from '../context/auth'
 import { authContext } from '../context/authStore'
 import Spinner from '../images/spinner'
 
@@ -22,7 +22,7 @@ import Spinner from '../images/spinner'
 export default function SignInForm() {
   const classes = useStyles();
 
-  const [{ isLoggedIn, error, loading }, authDispatch] = useContext(authContext)
+  const [{error, loading }, authDispatch] = useContext(authContext)
   //const [loading, setLoading] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -31,32 +31,32 @@ export default function SignInForm() {
   function onSubmit(event) {
     event.preventDefault()
     //setLoading(true)
-    authDispatch({
-      type: 'AUTH_START',
-    })
+    // authDispatch({
+    //   type: 'AUTH_START',
+    // })
     //console.log("username",username, "pass:",password)
-    attemptLogin(username, password)
-      .then((username) => {
-        authDispatch({
-          type: 'LOGIN',
-          payload: {
-            username
-          }
-        });
-        console.log("dispatch: Login")
-      })
-      .catch((error) => {
-        authDispatch({
-          type: 'LOGIN_ERROR',
-          payload: {
-            error
-          }
-        });
-        console.log("dispatch: error")
-      })
-      .finally(() => {
-        //setLoading(false);
-      });
+    attemptLogin(username, password, authDispatch)
+    // .then((username) => {
+    //   authDispatch({
+    //     type: 'LOGIN',
+    //     payload: {
+    //       username
+    //     }
+    //   });
+    //   console.log("dispatch: Login")
+    // })
+    // .catch((error) => {
+    //   authDispatch({
+    //     type: 'LOGIN_ERROR',
+    //     payload: {
+    //       error
+    //     }
+    //   });
+    //   console.log("dispatch: error")
+    // })
+    // .finally(() => {
+    //   //setLoading(false);
+    // });
 
   }
 

@@ -1,4 +1,4 @@
 export const AUTH_START = 'AUTH_START'
-export const LOGIN = 'LOGIN'
-export const LOGIN_ERROR = 'LOGIN_ERROR'
-export const LOGOUT = 'LOGOUT'
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_FAIL = 'AUTH_FAIL'
+export const AUTH_LOGOUT = 'AUTH_LOGOUT'

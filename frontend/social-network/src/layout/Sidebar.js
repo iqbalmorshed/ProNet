@@ -24,7 +24,7 @@ export default function Sidebar(props) {
 
   return (
     <Grid item xs={12} md={4}>
-      <Paper variant="outlined" gutterBottom>
+      <Paper elevation={0}>
         <SignInPanel />
       </Paper>
 
@@ -45,8 +45,9 @@ export default function Sidebar(props) {
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Social
       </Typography>
+
       {social.map(network => (
-        <Link display="block" variant="body1" href="#" key={network}>
+        <Link display="block" variant="body1" href="#" key={network.name}>
           <Grid container direction="row" spacing={1} alignItems="center">
             <Grid item>
               <network.icon />
