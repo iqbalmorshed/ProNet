@@ -21,6 +21,5 @@ API_PATH = 'api/'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path(API_PATH, include('posts.urls')),
-    path(API_PATH, include('comments.urls')),
+    path('api/v1/', include('api.urls')),
 ]

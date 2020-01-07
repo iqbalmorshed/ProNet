@@ -11,6 +11,8 @@ pylint = "*"
 django = "==3.0.1"
 djangorestframework = "*"
 markdown = "*"
+django-rest-auth = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.7"
