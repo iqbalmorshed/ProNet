@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { Link as RouterLink } from 'react-router-dom'
+import { authContext } from '../context/authStore';
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -28,12 +29,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
   const classes = useStyles();
+  const [{ isLoggedIn, username }] = useContext(authContext)
   const { sections, title } = props;
+  const user_name = isLoggedIn ? username : 'User'
+  console.log("header: isloggedIN", isLoggedIn, "user_name", user_name)
 
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
-        <Button size="small">Hi, User!</Button>
+        <Button size="small">Hi, {user_name}!</Button>
         <Typography
           component="h2"
           variant="h5"

@@ -5,14 +5,18 @@ import NetworkLayout from './layout/NetworkLayout'
 import { layoutInfo } from './data/layoutInfo'
 import { sidebarInfo } from './data/sidebarInfo'
 import Sidebar from './layout/Sidebar'
+import {AuthProvider} from './context/authStore'
 
 function BaseLayout() {
     return (
-        <Router>
-           <NetworkLayout layoutInfo = {layoutInfo}>
-               <Sidebar sidebarInfo = {sidebarInfo}/>
-           </NetworkLayout>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <NetworkLayout layoutInfo = {layoutInfo}>
+                    <Sidebar sidebarInfo = {sidebarInfo}/>
+                </NetworkLayout>
+            </Router>
+        </AuthProvider>
+        
     )
 }
 

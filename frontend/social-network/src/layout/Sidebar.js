@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-import SignIn from '../signIn/SignIn'
+import SignInPanel from '../signIn/SignInPanel'
 
 const useStyles = makeStyles(theme => ({
   sidebarAboutBox: {
@@ -25,7 +25,7 @@ export default function Sidebar(props) {
   return (
     <Grid item xs={12} md={4}>
       <Paper variant="outlined" gutterBottom>
-        <SignIn />
+        <SignInPanel />
       </Paper>
 
       <Paper elevation={0} className={classes.sidebarAboutBox}>
