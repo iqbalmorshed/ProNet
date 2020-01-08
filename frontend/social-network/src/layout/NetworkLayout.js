@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 //import FacebookIcon from '@material-ui/icons/Facebook';
 //import TwitterIcon from '@material-ui/icons/Twitter';
 
+
 import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 //import Main from './Main';
@@ -22,7 +23,7 @@ const mainFeaturedPost = {
 };
 
 
-//const posts = [post1, post2, post3];
+
 
 
 function NetworkLayout(props) {
@@ -36,7 +37,7 @@ function NetworkLayout(props) {
         <Header title={header.title} sections={header.sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
-          {props.children}
+            {props.children}
         </main>
       </Container>
       <Footer title={footer.title} description={footer.description} />
