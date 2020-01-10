@@ -6,7 +6,7 @@ import { layoutInfo } from '../data/layoutInfo'
 import { sidebarInfo } from '../data/sidebarInfo'
 import Sidebar from './Sidebar'
 import PostList from './PostList'
-
+import { data } from './data'
 //temp
 // import post1 from './blog-post.1.md';
 // import post2 from './blog-post.2.md';
@@ -15,26 +15,28 @@ import PostList from './PostList'
 
 // console.log(post1)
 
-const posts = [
-    {
-        id: '1',
-        title: 'Featured post',
-        date: 'Nov 12',
-        description:
-            'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random',
-        imageText: 'Image Text',
-    },
-    {
-        id: '2',
-        title: 'Post title',
-        date: 'Nov 11',
-        description:
-            'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random',
-        imageText: 'Image Text',
-    },
-];
+// const posts = [
+//     {
+//         id: '1',
+//         title: 'Featured post',
+//         date: 'Nov 12',
+//         description:
+//             'This is a wider card with supporting text below as a natural lead-in to additional content.',
+//         image: 'https://source.unsplash.com/random',
+//         imageText: 'Image Text',
+//     },
+//     {
+//         id: '2',
+//         title: 'Post title',
+//         date: 'Nov 11',
+//         description:
+//             'This is a wider card with supporting text below as a natural lead-in to additional content.',
+//         image: 'https://source.unsplash.com/random',
+//         imageText: 'Image Text',
+//     },
+// ];
+
+const posts = data.results
 
 function PostPanel() {
     return (

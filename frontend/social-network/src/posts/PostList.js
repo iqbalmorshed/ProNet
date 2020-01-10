@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import { Pagination } from 'semantic-ui-react'
 //import Markdown from './Markdown';
 import PostDetailsCard from './PostDetailsCard'
 
@@ -20,10 +21,17 @@ export default function PostList(props) {
 
       <Grid container spacing={2}>
         {posts.map(post => (
-          <PostDetailsCard post={post} key={post.id}/>
+          <PostDetailsCard post={post} key={post.id} />
         ))}
+
+        <Divider />
+        <Grid item>
+          <Pagination defaultActivePage={1} totalPages={10} />
+        </Grid>
       </Grid>
-      
+
+
+
     </Grid>
   );
 }

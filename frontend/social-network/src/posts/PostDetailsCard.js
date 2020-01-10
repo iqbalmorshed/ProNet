@@ -1,29 +1,22 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 //import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Grid from '@material-ui/core/Grid';
+
+import CommentList from './CommentList';
+import PostContent from './PostContent'
+import PostActions from './PostActions'
+import { authContext } from '../context/authStore'
+import PostHeader from './PostHeader'
 
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 900,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -35,79 +28,43 @@ const useStyles = makeStyles(theme => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
 }));
 
 export default function PostDetailsCard(props) {
+
+  const [{ username },] = React.useContext(authContext)
+
   const post = props.post
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const [editMode, setEditMode] = React.useState(false)
 
   return (
     <Grid item xs={12} md={12}>
       <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Shrimp and Chorizo Paella"
-          subheader={post.date}
-        />
-        {/* <CardMedia
-          className={classes.media}
-          image="/static/images/cards/paella.jpg"
-          title="Paella dish"
-        /> */}
+        
+        <PostHeader post={post} loggedInUser={username} editModeState={[editMode, setEditMode]}/>
+
         <CardContent>
-          <Typography variant="body2" color="initial" component="p">
-            {post.title}
-          </Typography>
-          <Typography variant="body2" color="initial" component="p">
-            {post.description}
-          </Typography>
+          <PostContent title={post.title} body={post.body} editMode={editMode} />
         </CardContent>
+        
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
+          <PostActions expansionState={[expanded, setExpanded]}/>
         </CardActions>
+
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>
-              Method:
-            </Typography>
+
+            <CommentList postId={post.id}>
+              {post.comments}
+            </CommentList>
 
           </CardContent>
         </Collapse>
       </Card>
 
     </Grid>
-    
+
   );
 }
