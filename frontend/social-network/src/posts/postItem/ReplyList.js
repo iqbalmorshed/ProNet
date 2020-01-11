@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { Comment } from 'semantic-ui-react'
 import CommentDetail from '../comments/CommentDetail'
 import CommentCreate from '../comments/CommentCreate'
@@ -16,12 +16,12 @@ function ReplyList(props) {
 
             {
                 replyClicked && token ?
-                    <CommentCreate 
-                        type="reply" 
-                        postId={props.postId} 
+                    <CommentCreate
+                        type="reply"
+                        postId={props.postId}
                         parentId={props.parentId}
                         author={username}
-                        replyClickData={props.replyClickData} 
+                        replyClickData={props.replyClickData}
                     />
                     : null
             }

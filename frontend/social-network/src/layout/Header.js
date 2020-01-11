@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -7,9 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 //import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import { Link as RouterLink } from 'react-router-dom'
 import { authContext } from '../context/authStore';
 import { attemptLogout } from '../context/auth'
+import { componentStateContext } from '../context/componentStateStore'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -33,6 +34,10 @@ export default function Header(props) {
   const [{ token, username }, authDispatch] = useContext(authContext)
   const { sections, title } = props;
   const user_name = token ? username : 'User'
+
+  const { newPostState } = React.useContext(componentStateContext)
+  //console.log("in layout:header.js: newPostState", x)
+  const [, setNewPost] = newPostState
 
   return (
     <React.Fragment>
@@ -61,10 +66,8 @@ export default function Header(props) {
           {/* <SearchIcon /> */}
         </IconButton>
 
-        <Button variant="outlined" size="small">
-          <RouterLink to="/new-item">
-            New Post
-          </RouterLink>
+        <Button variant="outlined" size="small" onClick={() => setNewPost(true)}>
+          New Post
         </Button>
 
 
