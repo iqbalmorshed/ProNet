@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 import { Comment } from 'semantic-ui-react'
-import CommentDetail from './CommentDetail'
-import CommentCreate from './CommentCreate'
-import { authContext } from '../context/authStore'
+import CommentDetail from '../comments/CommentDetail'
+import CommentCreate from '../comments/CommentCreate'
+import { authContext } from '../../context/authStore'
 
 function ReplyList(props) {
     const [{ token, username },] = useContext(authContext)

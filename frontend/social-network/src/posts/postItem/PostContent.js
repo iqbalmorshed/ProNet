@@ -3,10 +3,13 @@ import Typography from '@material-ui/core/Typography';
 import { Form, TextArea } from 'semantic-ui-react'
 
 function PostContent(props) {
-    const { title, body, editMode } = props
+    const { title, body, editMode, setEditMode } = props
 
     const handleOnSubmit = e => {
-
+        // postAPIcall()
+        // if(success){
+        //     setEditMode(false)
+        // }
     }
     if (editMode) {
         return (

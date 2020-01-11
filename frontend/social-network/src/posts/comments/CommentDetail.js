@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Comment } from 'semantic-ui-react'
 
-import ReplyList from './ReplyList'
+import ReplyList from '../postItem/ReplyList'
 
 function CommentDetail(props) {
 

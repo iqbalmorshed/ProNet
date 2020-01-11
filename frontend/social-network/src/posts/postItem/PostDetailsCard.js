@@ -8,10 +8,10 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Grid from '@material-ui/core/Grid';
 
-import CommentList from './CommentList';
+import CommentList from '../comments/CommentList';
 import PostContent from './PostContent'
 import PostActions from './PostActions'
-import { authContext } from '../context/authStore'
+import { authContext } from '../../context/authStore'
 import PostHeader from './PostHeader'
 
 const useStyles = makeStyles(theme => ({
@@ -42,15 +42,20 @@ export default function PostDetailsCard(props) {
   return (
     <Grid item xs={12} md={12}>
       <Card className={classes.card}>
-        
-        <PostHeader post={post} loggedInUser={username} editModeState={[editMode, setEditMode]}/>
+
+        <PostHeader post={post} loggedInUser={username} editModeState={[editMode, setEditMode]} />
 
         <CardContent>
-          <PostContent title={post.title} body={post.body} editMode={editMode} />
+          <PostContent 
+            title={post.title} 
+            body={post.body} 
+            editMode={editMode}
+            setEditMode={setEditMode} 
+          />
         </CardContent>
-        
+
         <CardActions disableSpacing>
-          <PostActions expansionState={[expanded, setExpanded]}/>
+          <PostActions expansionState={[expanded, setExpanded]} />
         </CardActions>
 
         <Collapse in={expanded} timeout="auto" unmountOnExit>
