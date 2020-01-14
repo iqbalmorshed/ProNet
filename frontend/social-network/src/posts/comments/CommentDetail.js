@@ -1,24 +1,33 @@
 import React, { useState } from 'react'
-import { Comment } from 'semantic-ui-react'
+import { Comment, Form, TextArea } from 'semantic-ui-react'
 
 import ReplyList from '../postItem/ReplyList'
+import { useApi } from '../../apiCommunication/useApi'
+import { commentOperations } from '../../data/apiOperations'
 
 function CommentDetail(props) {
 
-    const [replyClicked, setReplyClicked] = useState(false)
-    const [targetUserForReply, setTargetUserForReply] = useState("")
-    const replyClickData = { replyClicked, setReplyClicked, targetUserForReply, setTargetUserForReply }
+    const [[ /*isLoading*/, isEditSuccess, isEditError], setData]
+        = useApi(commentOperations.COMMENT_UPDATE, {})
+
+    const [[ /*isDeleteLoading*/, isDeleteSuccess, isDeleteError], setDeleteData]
+        = useApi(commentOperations.COMMENT_DELETE, {})
 
     const comment = props.data
+    const [commentBody, setCommentBody] = useState(comment.body)
+    const [replyClicked, setReplyClicked] = useState(false)
+    const [targetUserForReply, setTargetUserForReply] = useState("")
+    const [editMode, setEditMode] = useState(false)
+    const replyClickData = { replyClicked, setReplyClicked, targetUserForReply, setTargetUserForReply }
 
-    const onClick = (e, data) => {
+    const handleReply = (e, data) => {
         if (comment.parent) {
-            console.log("this is reply")
+            //console.log("this is reply")
             const { setReplyClicked, setTargetUserForReply } = props.replyClickData
             setReplyClicked(true)
             setTargetUserForReply(comment.author)
         } else {
-            console.log("this is comment")
+            //console.log("this is comment")
             setReplyClicked(true)
             setTargetUserForReply(comment.author)
         }
@@ -26,6 +35,40 @@ function CommentDetail(props) {
 
     }
 
+    const handleEdit = (e, data) => {
+        setEditMode(true)
+    }
+
+    const handleDelete = () => {
+        setDeleteData({
+            urlVariables: [comment.id,]
+        })
+    }
+
+    const handleOnSubmit = e => {
+        e.preventDefault()
+        setData({
+            urlVariables: [comment.id,],
+            payload: {
+                parent: comment.parent,
+                body: commentBody,
+            }
+        })
+
+    }
+
+
+    const onEnterPress = (e) => {
+        if (e.keyCode === 13 && e.shiftKey === false) {
+            handleOnSubmit(e);
+        }
+    }
+
+    if (isEditSuccess && editMode)
+        setEditMode(false)
+
+    if (isDeleteSuccess)
+        return null
 
     return (
         <Comment>
@@ -35,11 +78,28 @@ function CommentDetail(props) {
                 <Comment.Metadata>
                     <span>Today at 5:42PM</span>
                 </Comment.Metadata>
-                <Comment.Text>{comment.body}</Comment.Text>
-                <Comment.Actions onClick={onClick}>
-                    <Comment.Action>Reply</Comment.Action>
-                    <Comment.Action>Edit</Comment.Action>
-                    <Comment.Action>Delete</Comment.Action>
+                <Comment.Text >
+                    {
+                        editMode ? (
+                            <Form onSubmit={handleOnSubmit}>
+                                <Form.Field
+                                    control={TextArea}
+                                    placeholder={'Write a ' + props.type + ' ...'}
+                                    onChange={e => { setCommentBody(e.target.value) }}
+                                    onKeyDown={onEnterPress}
+                                    value={commentBody}
+                                />
+                            </Form>
+                        )
+                            : commentBody
+                    }
+                </Comment.Text>
+                {isEditError ? <div>Error: Could not edit properly</div> : null}
+                {isDeleteError ? <div>Error: Could not delete properly</div> : null}
+                <Comment.Actions >
+                    <Comment.Action onClick={handleReply}>Reply</Comment.Action>
+                    <Comment.Action onClick={handleEdit}>Edit</Comment.Action>
+                    <Comment.Action onClick={handleDelete}>Delete</Comment.Action>
                 </Comment.Actions>
             </Comment.Content>
 

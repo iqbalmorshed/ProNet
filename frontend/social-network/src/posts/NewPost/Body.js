@@ -1,34 +1,51 @@
 import React from 'react'
-
 //import TextField from '@material-ui/core/TextField';
 import { Form, TextArea, Button } from 'semantic-ui-react'
-
+import { useApi } from '../../apiCommunication/useApi'
+import { postOperations } from '../../data/apiOperations'
 
 function Body(props) {
-    const [, setNewPost] = props.newPostState
+    const [[ /*isLoading*/, isSuccess, isError], setData]
+        = useApi(postOperations.POST_CREATE, {})
+    const [newPost, setNewPost] = props.newPostState
     const [title, setTitle] = React.useState("")
     const [body, setBody] = React.useState("")
 
-    const handleOnSubmit = e => {
+    const handlePost = () => {
+        setData({
+            payload: {
+                title: title,
+                body: body,
+            }
+        })
+
+    }
+
+    const handleCancel = () => {
         setNewPost(false)
     }
 
+    if (isSuccess && newPost)
+        setNewPost(false)
+
     return (
         // semantic UI based form
-        <Form onSubmit={handleOnSubmit}>
+        <Form>
+            {isError ? <div>Error occured. Could not post.</div> : null}
             <Form.Input
                 placeholder="My title"
                 value={title}
-                onChange={e=>{setTitle(e.target.value)}}
+                onChange={e => { setTitle(e.target.value) }}
             />
             <Form.Field
                 placeholder="My thoughts..."
                 control={TextArea}
-                onChange={e=>{setBody(e.target.value)}}
+                onChange={e => { setBody(e.target.value) }}
                 // onKeyDown={onEnterPress}
                 value={body}
             />
-            <Button primary>Post</Button>
+            <Button primary onClick={handlePost}>Post</Button>
+            <Button secondary onClick={handleCancel}>Cancel</Button>
         </Form>
     )
 }

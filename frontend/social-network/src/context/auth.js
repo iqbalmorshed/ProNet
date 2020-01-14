@@ -43,20 +43,20 @@ export const attemptLogin = (username, password, authDispatch) => {
             password: password,
         }
     )
-        .then(
-            res => {
-                const token = res.data.key
-                localStorage.setItem('token', token)
-                localStorage.setItem('username', username)
-                authDispatch(authSuccess(token, username))
-            }
-        )
-        .catch(
-            err => {
-                console.log("error:", err)
-                authDispatch(authFail(err))
-            }
-        )
+    .then(
+        res => {
+            const token = res.data.key
+            localStorage.setItem('token', token)
+            localStorage.setItem('username', username)
+            authDispatch(authSuccess(token, username))
+        }
+    )
+    .catch(
+        err => {
+            console.log("error:", err)
+            authDispatch(authFail(err))
+        }
+    )
 
 }
 

@@ -13,7 +13,7 @@ class ReplyListSerilizer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['id', 'parent',
-                  'body', 'author']
+                  'body', 'author', 'created_at']
 
 
 class CommentListSerializer(serializers.ModelSerializer):

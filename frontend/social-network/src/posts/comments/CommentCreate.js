@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Comment, Form, TextArea } from 'semantic-ui-react'
 
+import { useApi } from '../../apiCommunication/useApi'
+import { commentOperations } from '../../data/apiOperations'
 
 function CommentCreate(props) {
+    const [[ /*isLoading*/, isCreateSuccess, isCreateError], setCreateData]
+        = useApi(commentOperations.COMMENT_CREATE, {})
 
-    
     const { postId, parentId, author } = props
 
     const [text, setText] = useState(
@@ -19,20 +22,28 @@ function CommentCreate(props) {
 
     const handleOnSubmit = e => {
         e.preventDefault()
-        console.log("submit comment for post:", postId, " parentID", parentId)
-        console.log("text body:", text)
-        if (props.type === 'reply') {
-            props.replyClickData.setReplyClicked(false)
-        }
+        setCreateData({
+            urlVariables: [postId,],
+            payload: {
+                parent: parentId,
+                body: text,
+            }
+        })
         setText('')
+
     }
 
     const onEnterPress = (e) => {
         if (e.keyCode === 13 && e.shiftKey === false) {
-            console.log("enter pressed")
-            //e.preventDefault();
             handleOnSubmit(e);
         }
+    }
+
+    if (isCreateSuccess) {
+        if (props.type === 'reply') {
+            props.replyClickData.setReplyClicked(false)
+        }
+
     }
 
     return (
@@ -53,6 +64,7 @@ function CommentCreate(props) {
                             value={text}
                         />
                     </Form>
+                    {isCreateError ? <div>Error in creating comment.</div> : null}
                 </Comment.Text>
             </Comment.Content>
         </Comment>

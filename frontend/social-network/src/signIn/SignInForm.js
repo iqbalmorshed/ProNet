@@ -29,35 +29,8 @@ export default function SignInForm() {
 
 
   function onSubmit(event) {
-    event.preventDefault()
-    //setLoading(true)
-    // authDispatch({
-    //   type: 'AUTH_START',
-    // })
-    //console.log("username",username, "pass:",password)
+    event.preventDefault()  
     attemptLogin(username, password, authDispatch)
-    // .then((username) => {
-    //   authDispatch({
-    //     type: 'LOGIN',
-    //     payload: {
-    //       username
-    //     }
-    //   });
-    //   console.log("dispatch: Login")
-    // })
-    // .catch((error) => {
-    //   authDispatch({
-    //     type: 'LOGIN_ERROR',
-    //     payload: {
-    //       error
-    //     }
-    //   });
-    //   console.log("dispatch: error")
-    // })
-    // .finally(() => {
-    //   //setLoading(false);
-    // });
-
   }
 
   return (

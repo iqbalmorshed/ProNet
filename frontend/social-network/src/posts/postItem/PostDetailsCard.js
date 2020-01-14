@@ -38,19 +38,24 @@ export default function PostDetailsCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false)
+  const [isPostAvailable, setIsPostAvailable] = React.useState(true)
+
+  if (!isPostAvailable)
+    return null
 
   return (
     <Grid item xs={12} md={12}>
       <Card className={classes.card}>
 
-        <PostHeader post={post} loggedInUser={username} editModeState={[editMode, setEditMode]} />
+        <PostHeader post={post} loggedInUser={username} editModeState={[editMode, setEditMode]} setIsPostAvailable={setIsPostAvailable} />
 
         <CardContent>
-          <PostContent 
-            title={post.title} 
-            body={post.body} 
+          <PostContent
+            id={post.id}
+            title={post.title}
+            body={post.body}
             editMode={editMode}
-            setEditMode={setEditMode} 
+            setEditMode={setEditMode}
           />
         </CardContent>
 
