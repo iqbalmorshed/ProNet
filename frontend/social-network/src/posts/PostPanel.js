@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import NetworkLayout from '../layout/NetworkLayout'
 import { layoutInfo } from '../data/layoutInfo'
 import { sidebarInfo } from '../data/sidebarInfo'
-import Sidebar from './Sidebar'
+import Sidebar from '../sidebar/Sidebar'
 import ViewAllPosts from './ViewAllPosts';
 
 function PostPanel() {

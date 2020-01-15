@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 import SignInPanel from '../signIn/SignInPanel'
+import TimerDisplay from './TimerDisplay'
 
 const useStyles = makeStyles(theme => ({
   sidebarAboutBox: {
@@ -28,12 +29,8 @@ export default function Sidebar(props) {
         <SignInPanel />
       </Paper>
 
-      <Paper elevation={0} className={classes.sidebarAboutBox}>
-        <Typography variant="h6" gutterBottom>
-          {title}
-        </Typography>
-        <Typography>{description}</Typography>
-      </Paper>
+      <TimerDisplay info={{title, description}}/>
+      
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Archives
       </Typography>
