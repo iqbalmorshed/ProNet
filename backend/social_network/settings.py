@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'users',
     'comments',
     'post_stats',
+    'summary_stats',
 
 ]
 

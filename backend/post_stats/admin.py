@@ -4,7 +4,7 @@ from .models import PostStat
 
 
 class PostStatAdmin(admin.ModelAdmin):
-    list_display = ['id', 'date', 'user', 'time_spent']
+    list_display = ['id', 'date', 'user', 'elapsed_time']
 
 
 admin.site.register(PostStat, PostStatAdmin)

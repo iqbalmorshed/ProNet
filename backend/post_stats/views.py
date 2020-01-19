@@ -18,8 +18,7 @@ class PostStatListCreate(generics.ListCreateAPIView):
         print("date", date, "self.request.user", self.request.user)
 
         if date is not None:
-            queryset = PostStat.objects.filter(
-                user=self.request.user).filter(date=date)
+            queryset = PostStat.objects.filter(user=self.request.user).filter(date=date)
             print("queryset :", queryset)
             return queryset
         return PostStat.objects.filter(user=self.request.user)
