@@ -10,3 +10,7 @@ export const commentOperations = {
     COMMENT_UPDATE: 'COMMENT_UPDATE',
     COMMENT_DELETE: 'COMMENT_DELETE',
 }
+
+export const statOperations = {
+    SHOW_SUMMARY_STATS: 'SHOW_SUMMARY_STATS',
+}

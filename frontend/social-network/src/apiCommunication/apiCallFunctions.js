@@ -1,6 +1,6 @@
 import { getUrl } from '../data/apiInfo'
 import axios from 'axios';
-import { postOperations, commentOperations } from '../data/apiOperations'
+import { postOperations, commentOperations, statOperations } from '../data/apiOperations'
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -37,6 +37,11 @@ export const processPostCommentOperation = async (token, operationType, data) =>
     }
 }
 
+export const processStatOperation = async (token, operationType, data) => {
+
+    if(operationType===statOperations.SHOW_SUMMARY_STATS)
+        callApi(getUrl(operationType, data.urlVariables), 'get', token)
+}
 /**
  * 
  * @param {string} token 
@@ -49,6 +54,8 @@ export const processOperation = async (token, operationType, data) => {
     console.log("operationtype", operationType)
     if (operationType in postOperations || operationType in commentOperations)
         processPostCommentOperation(token, operationType, data)
+    else if(operationType in statOperations)
+        processStatOperation(token, operationType, data)
     else {
         console.log("Error in processOperaiotn: operationType not found")
     }

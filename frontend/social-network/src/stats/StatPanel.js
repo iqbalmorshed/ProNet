@@ -5,15 +5,14 @@ import NetworkLayout from '../layout/NetworkLayout'
 import { layoutInfo } from '../data/layoutInfo'
 import { sidebarInfo } from '../data/sidebarInfo'
 import Sidebar from '../sidebar/Sidebar'
-import ViewAllPosts from './ViewAllPosts';
+import ViewAllStats from './ViewAllStats';
 
-function PostPanel() {
-
+function StatPanel() {
     return (
         <>
             <NetworkLayout layoutInfo={layoutInfo}>
                 <Grid container spacing={3}>
-                    <ViewAllPosts />
+                    <ViewAllStats/>
                     <Sidebar sidebarInfo={sidebarInfo} />
                 </Grid>
             </NetworkLayout>
@@ -21,4 +20,4 @@ function PostPanel() {
     )
 }
 
-export default PostPanel
+export default StatPanel
