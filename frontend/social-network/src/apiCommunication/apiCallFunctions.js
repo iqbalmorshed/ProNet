@@ -7,7 +7,6 @@ axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.headers.post['Content-Type'] = "application/json";
 
 const callApi = async (apiUrl, method, token, data = {}) => {
-    console.log("apiUrl:", apiUrl)
     return await axios({
         url: apiUrl,
         method: method,
@@ -24,23 +23,25 @@ export const processPostCommentOperation = async (token, operationType, data) =>
         data.urlVariables = []
 
     if (operationType === postOperations.POST_CREATE || operationType === commentOperations.COMMENT_CREATE) {
-        callApi(getUrl(operationType, data.urlVariables), 'post', token, data.payload)
+        return callApi(getUrl(operationType, data.urlVariables), 'post', token, data.payload)
     }
     else if (operationType === postOperations.POST_UPDATE || operationType === commentOperations.COMMENT_UPDATE) {
-        callApi(getUrl(operationType, data.urlVariables), 'put', token, data.payload)
+        return callApi(getUrl(operationType, data.urlVariables), 'put', token, data.payload)
     }
     else if (operationType === postOperations.POST_DELETE || operationType === commentOperations.COMMENT_DELETE) {
-        callApi(getUrl(operationType, data.urlVariables), 'delete', token)
+        return callApi(getUrl(operationType, data.urlVariables), 'delete', token)
     }
     else {
-        console.log("Error: From /apiCommunction/apiCallFunction.js callPostCommentApi: callType not matched with any valid type ")
+        throw new Error("Error: From /apiCommunction/apiCallFunction.js callPostCommentApi: callType not matched with any valid type ")
     }
 }
 
 export const processStatOperation = async (token, operationType, data) => {
 
-    if(operationType===statOperations.SHOW_SUMMARY_STATS)
-        callApi(getUrl(operationType, data.urlVariables), 'get', token)
+    if (operationType === statOperations.SHOW_SUMMARY_STATS)
+        return callApi(getUrl(operationType, data.urlVariables), 'get', token)
+    else
+        throw new Error("error in processStatOperation")
 }
 /**
  * 
@@ -51,12 +52,11 @@ export const processStatOperation = async (token, operationType, data) => {
  * @param {object} data.payload - actual data that will be sent by the operation.
  */
 export const processOperation = async (token, operationType, data) => {
-    console.log("operationtype", operationType)
     if (operationType in postOperations || operationType in commentOperations)
-        processPostCommentOperation(token, operationType, data)
-    else if(operationType in statOperations)
-        processStatOperation(token, operationType, data)
+        return processPostCommentOperation(token, operationType, data)
+    else if (operationType in statOperations)
+        return processStatOperation(token, operationType, data)
     else {
-        console.log("Error in processOperaiotn: operationType not found")
+        throw new Error("Error in processOperaiotn: operationType not found")
     }
 }

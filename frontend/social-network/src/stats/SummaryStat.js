@@ -1,32 +1,35 @@
-import React from 'react'
-import { Icon, Image, Statistic } from 'semantic-ui-react'
+import React, { useEffect } from 'react'
+import { Statistic } from 'semantic-ui-react'
 
 import { useApi } from '../apiCommunication/useApi'
 import { statOperations } from '../data/apiOperations'
 
 function SummaryStat() {
 
-    const [[isSummaryStatLoading, isSummaryStatSuccess, isSummaryStatError, summaryStatData], setSummaryStatData]
+    const [[isSummaryStatLoading, /*isSummaryStatSuccess*/, isSummaryStatError, summaryStatData], setSummaryStatData]
         = useApi(statOperations.SHOW_SUMMARY_STATS, {})
 
-    React.useEffect(() => {
+    useEffect(() => {
         setSummaryStatData({
             urlVariables: [],
         })
     }, [])
 
-    if (isSummaryStatError)
+
+
+    if (isSummaryStatError) {
         return <div>Error loading summary stat</div>
+    }
     else if (isSummaryStatLoading)
         return <div> Loading summary stat data... </div>
 
-    //console.log("summaryStatData :", summaryStatData)
+    const { total_posts_made, total_comments_made } = summaryStatData
     return (
         <Statistic.Group widths='two'>
             <Statistic>
                 <Statistic.Value>
                     <i className="file alternate outline icon"></i>
-                    22
+                    {total_posts_made}
                 </Statistic.Value>
                 <Statistic.Label>Posts</Statistic.Label>
             </Statistic>
@@ -34,7 +37,7 @@ function SummaryStat() {
             <Statistic>
                 <Statistic.Value>
                     <i className="comments outline icon"></i>
-                    22
+                    {total_comments_made}
                 </Statistic.Value>
                 <Statistic.Label>Comments</Statistic.Label>
             </Statistic>

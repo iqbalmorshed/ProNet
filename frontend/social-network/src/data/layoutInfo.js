@@ -1,11 +1,15 @@
+export const paths = {
+  HOME: '/',
+  STATISTICS: '/statistics'
+}
 const sections = [
-  { title: 'Home', url: '#' },
-  { title: 'My Posts', url: '#' },
-  { title: 'Favorite Posts', url: '#' },
-  { title: 'Statistics', url: '#' },
-  { title: 'Profile', url: '#' },
-  { title: 'About', url: '#' },
-  { title: 'Settings', url: '#' },
+  { title: 'Home', path: paths.HOME },
+  { title: 'My Posts', path: '#' },
+  { title: 'Favorite Posts', path: '#' },
+  { title: 'Statistics', path: paths.STATISTICS },
+  { title: 'Profile', path: '#' },
+  { title: 'About', path: '#' },
+  { title: 'Settings', path: '#' },
   // { title: 'Health', url: '#' },
   // { title: 'Style', url: '#' },
   // { title: 'Travel', url: '#' },

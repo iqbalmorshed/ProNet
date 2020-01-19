@@ -17,10 +17,8 @@ export const useApi = (operationType, initialData) => {
             setIsLoading(true);
 
             processOperation(token, operationType, data)
-                .then(response => {
-                    console.log("response ::", response)
-                    //console.log("response.data ::", response.data)
-                    //setResultData(response)
+                .then(response => {               
+                    setResultData(response.data)
                     setIsSuccess(true)
                     
                 })

@@ -6,6 +6,7 @@ import { authContext } from './context/authStore'
 import { checkAuthStatus } from './context/auth'
 import PostPanel from './posts/PostPanel'
 import StatPanel from './stats/StatPanel'
+import { paths } from './data/layoutInfo'
 
 function BaseLayout() {
 
@@ -19,10 +20,10 @@ function BaseLayout() {
 
         <Router>
             <Switch>
-                <Route exact path="/">
+                <Route exact path={paths.HOME}>
                     <PostPanel />
                 </Route>
-                <Route path="/statistics">
+                <Route path={paths.STATISTICS}>
                     <StatPanel />
                 </Route>
             </Switch>

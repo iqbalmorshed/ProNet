@@ -7,10 +7,11 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 //import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+//import Link from '@material-ui/core/Link';
 import { authContext } from '../context/authStore';
 import { attemptLogout } from '../context/auth'
 import { componentStateContext } from '../context/componentStateStore'
+import { Link as RouterLink } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -74,16 +75,11 @@ export default function Header(props) {
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
         {sections.map(section => (
-          <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={section.url}
-            className={classes.toolbarLink}
-          >
+
+          <RouterLink key={section.title} to={section.path}>
             {section.title}
-          </Link>
+          </RouterLink>
+
         ))}
       </Toolbar>
     </React.Fragment>
