@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 autopep8 = "*"
 pylint = "*"
+rope = "*"
 
 [packages]
 django = "==3.0.1"
@@ -14,6 +15,8 @@ markdown = "*"
 django-rest-auth = "*"
 django-allauth = "*"
 django-cors-headers = "*"
+drf-writable-nested = "*"
+django-annoying = "*"
 
 [requires]
 python_version = "3.7"

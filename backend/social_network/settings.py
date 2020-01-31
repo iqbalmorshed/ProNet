@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     # 3rd party
     'rest_framework',
     'rest_framework.authtoken',
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'corsheaders',
+    'annoying',
+
 
 
     # my apps
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
     'comments',
     'post_stats',
     'summary_stats',
+    'profiles',
 
 ]
 

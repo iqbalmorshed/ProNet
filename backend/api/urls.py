@@ -4,6 +4,7 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     path('comments/', include('comments.urls')),
     path('users/', include('users.urls')),
+    path('profiles/', include('profiles.urls')),
     path('post-stats/', include('post_stats.urls')),
     path('summary-stats/', include('summary_stats.urls')),
     path('rest-auth/', include('rest_auth.urls')),
