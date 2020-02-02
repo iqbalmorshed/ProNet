@@ -31,7 +31,7 @@ function CommentDetail(props) {
             setReplyClicked(true)
             setTargetUserForReply(comment.author)
         }
-        console.log(comment.author)
+        //console.log(comment.author)
 
     }
 

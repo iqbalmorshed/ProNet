@@ -21,7 +21,7 @@ const commentUrl = apiUrl + commentPath
 const summaryStatUrl = apiUrl + summaryStatPath
 
 const operationToUrlMap = {
-    [postOperations.POST_LIST]: postUrl,
+    [postOperations.POST_LIST]: postUrl + '?page={0}',
     [postOperations.POST_CREATE]: postUrl + "create/",
     [postOperations.POST_UPDATE]: postUrl + "{0}/modify/",
     [postOperations.POST_DELETE]: postUrl + "{0}/modify/",

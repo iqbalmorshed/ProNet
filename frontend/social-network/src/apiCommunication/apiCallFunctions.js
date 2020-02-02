@@ -22,7 +22,10 @@ export const processPostCommentOperation = async (token, operationType, data) =>
     if (!data.hasOwnProperty('urlVariables'))
         data.urlVariables = []
 
-    if (operationType === postOperations.POST_CREATE || operationType === commentOperations.COMMENT_CREATE) {
+    if (operationType === postOperations.POST_LIST){
+        return callApi(getUrl(operationType, data.urlVariables), 'get', token)
+    }
+    else if (operationType === postOperations.POST_CREATE || operationType === commentOperations.COMMENT_CREATE) {
         return callApi(getUrl(operationType, data.urlVariables), 'post', token, data.payload)
     }
     else if (operationType === postOperations.POST_UPDATE || operationType === commentOperations.COMMENT_UPDATE) {
