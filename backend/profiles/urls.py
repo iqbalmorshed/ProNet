@@ -3,5 +3,5 @@ from .views import ProfileRetrieve
 
 urlpatterns = [
     path('<str:username>/', ProfileRetrieve.as_view(),
-         name='profile_retrieve'),
+         name='profile_detail'),
 ]

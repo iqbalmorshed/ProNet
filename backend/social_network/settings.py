@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'post_stats',
     'summary_stats',
     'profiles',
+    'connections',
 
 ]
 

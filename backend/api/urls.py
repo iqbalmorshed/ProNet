@@ -7,6 +7,8 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('post-stats/', include('post_stats.urls')),
     path('summary-stats/', include('summary_stats.urls')),
+    path('connections/', include('connections.urls')),
+    
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
 

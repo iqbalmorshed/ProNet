@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 from .models import BasicInfo, Address, Interest
+from connections.serializers import FolloweeFollowerSerializer
 
 
 class BasicInfoSerializer(serializers.ModelSerializer):
@@ -32,11 +33,12 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     basic_info = BasicInfoSerializer(required=False)
     address = AddressSerializer(required=False)
+    connections = FolloweeFollowerSerializer(read_only=True, source='*')
 
     class Meta:
         model = get_user_model()
         fields = ['username', 'email',
-                  'address', 'basic_info']
+                  'address', 'basic_info', 'connections']
         read_only_fields = ['username']
 
     def update(self, user_object, validated_data):
