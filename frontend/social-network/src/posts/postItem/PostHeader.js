@@ -9,7 +9,7 @@ import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-import { postOperations } from '../../data/apiOperations'
+import { operations } from '../../data/apiOperations'
 import { useApi } from '../../apiCommunication/useApi'
 
 const useStyles = makeStyles(theme => ({
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 function PostHeader(props) {
     const [[ /*isLoading*/, isDeleteSuccess, isDeleteError], setDeleteData]
-        = useApi(postOperations.POST_DELETE, {})
+        = useApi(operations.POST_DELETE, {})
 
     const { post, loggedInUser } = props
     const [anchorEl, setAnchorEl] = React.useState(null);

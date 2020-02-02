@@ -3,15 +3,15 @@ import { Comment, Form, TextArea } from 'semantic-ui-react'
 
 import ReplyList from '../postItem/ReplyList'
 import { useApi } from '../../apiCommunication/useApi'
-import { commentOperations } from '../../data/apiOperations'
+import { operations } from '../../data/apiOperations'
 
 function CommentDetail(props) {
 
     const [[ /*isLoading*/, isEditSuccess, isEditError], setData]
-        = useApi(commentOperations.COMMENT_UPDATE, {})
+        = useApi(operations.COMMENT_UPDATE, {})
 
     const [[ /*isDeleteLoading*/, isDeleteSuccess, isDeleteError], setDeleteData]
-        = useApi(commentOperations.COMMENT_DELETE, {})
+        = useApi(operations.COMMENT_DELETE, {})
 
     const comment = props.data
     const [commentBody, setCommentBody] = useState(comment.body)

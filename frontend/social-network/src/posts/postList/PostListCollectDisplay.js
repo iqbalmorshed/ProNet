@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useApi } from '../../apiCommunication/useApi'
-import { postOperations } from '../../data/apiOperations';
+import { operations } from '../../data/apiOperations';
 import PostPlaceholder from './PostPlaceholder'
 import PostList from './PostList'
 import { postPerPage } from '../../data/apiInfo'
@@ -9,7 +9,7 @@ import { postPerPage } from '../../data/apiInfo'
 function PostListCollectDisplay(props) {
     const [currentPage, setCurrentPage] = React.useState(1)
     const [[isLoading, isFetchPostSuccess, isFetchPostError, postListData], setFetchPostData]
-        = useApi(postOperations.POST_LIST, {})
+        = useApi(operations.POST_LIST, {})
 
     React.useEffect(() => {
         setFetchPostData({

@@ -2,11 +2,11 @@ import React from 'react'
 //import TextField from '@material-ui/core/TextField';
 import { Form, TextArea, Button } from 'semantic-ui-react'
 import { useApi } from '../../apiCommunication/useApi'
-import { postOperations } from '../../data/apiOperations'
+import { operations } from '../../data/apiOperations'
 
 function Body(props) {
     const [[ /*isLoading*/, isSuccess, isError], setData]
-        = useApi(postOperations.POST_CREATE, {})
+        = useApi(operations.POST_CREATE, {})
     const [newPost, setNewPost] = props.newPostState
     const [title, setTitle] = React.useState("")
     const [body, setBody] = React.useState("")

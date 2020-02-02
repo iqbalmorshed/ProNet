@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { Comment, Form, TextArea } from 'semantic-ui-react'
 
 import { useApi } from '../../apiCommunication/useApi'
-import { commentOperations } from '../../data/apiOperations'
+import { operations } from '../../data/apiOperations'
 
 function CommentCreate(props) {
     const [[ /*isLoading*/, isCreateSuccess, isCreateError], setCreateData]
-        = useApi(commentOperations.COMMENT_CREATE, {})
+        = useApi(operations.COMMENT_CREATE, {})
 
     const { postId, parentId, author } = props
 

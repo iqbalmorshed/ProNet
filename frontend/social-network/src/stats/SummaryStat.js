@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { Statistic } from 'semantic-ui-react'
 
 import { useApi } from '../apiCommunication/useApi'
-import { statOperations } from '../data/apiOperations'
+import { operations } from '../data/apiOperations'
 
 function SummaryStat() {
 
     const [[isSummaryStatLoading, /*isSummaryStatSuccess*/, isSummaryStatError, summaryStatData], setSummaryStatData]
-        = useApi(statOperations.SHOW_SUMMARY_STATS, {})
+        = useApi(operations.SHOW_SUMMARY_STATS, {})
 
     useEffect(() => {
         setSummaryStatData({

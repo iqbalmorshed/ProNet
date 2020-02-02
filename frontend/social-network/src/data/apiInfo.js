@@ -1,5 +1,5 @@
-import { postOperations, commentOperations, statOperations } from './apiOperations'
-import { StringFormatter } from '../utils/StringFormatter'
+import { operations } from './apiOperations'
+
 
 const hostUrl = 'http://127.0.0.1:8000/'
 const apiPath = 'api/v1/'
@@ -20,23 +20,17 @@ const postUrl = apiUrl + postPath
 const commentUrl = apiUrl + commentPath
 const summaryStatUrl = apiUrl + summaryStatPath
 
-const operationToUrlMap = {
-    [postOperations.POST_LIST]: postUrl + '?page={0}',
-    [postOperations.POST_CREATE]: postUrl + "create/",
-    [postOperations.POST_UPDATE]: postUrl + "{0}/modify/",
-    [postOperations.POST_DELETE]: postUrl + "{0}/modify/",
+export const operationToApi = {
+    [operations.POST_LIST]: { url: postUrl + '?page={0}', method: 'get' },
+    [operations.POST_CREATE]: { url: postUrl + "create/", method: 'post' },
+    [operations.POST_UPDATE]: { url: postUrl + "{0}/modify/", method: 'put' },
+    [operations.POST_DELETE]: { url: postUrl + "{0}/modify/", method: 'delete' },
 
-    [commentOperations.COMMENT_CREATE]: commentUrl + "{0}/create/",
-    [commentOperations.COMMENT_UPDATE]: commentUrl + "detail/{0}/modify/",
-    [commentOperations.COMMENT_DELETE]: commentUrl + "detail/{0}/modify/",
-    [statOperations.SHOW_SUMMARY_STATS]: summaryStatUrl,
+    [operations.COMMENT_CREATE]: { url: commentUrl + "{0}/create/", method: 'post' },
+    [operations.COMMENT_UPDATE]: { url: commentUrl + "detail/{0}/modify/", method: 'put' },
+    [operations.COMMENT_DELETE]: { url: commentUrl + "detail/{0}/modify/", methd: 'delete' },
+
+    [operations.SHOW_SUMMARY_STATS]: { url: summaryStatUrl, method: 'get' }
 }
 
-export function getUrl(operationType, urlVariables = []) {
-
-    if (urlVariables.length)
-        return StringFormatter(operationToUrlMap[operationType], urlVariables[0])
-    else
-        return StringFormatter(operationToUrlMap[operationType])
-}
 

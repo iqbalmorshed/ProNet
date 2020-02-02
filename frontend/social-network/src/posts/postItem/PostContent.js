@@ -1,12 +1,12 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography';
 import { Form, TextArea, Button } from 'semantic-ui-react'
-import { postOperations } from '../../data/apiOperations'
+import { operations } from '../../data/apiOperations'
 import { useApi } from '../../apiCommunication/useApi'
 
 function PostContent(props) {
     const [[ /*isLoading*/, isUpdateSuccess, isUpdateError], setUpdateData]
-        = useApi(postOperations.POST_UPDATE, {})
+        = useApi(operations.POST_UPDATE, {})
 
     const { id, title, body, editMode, setEditMode } = props
     const [editedTitle, setEditedTitle] = React.useState(title)

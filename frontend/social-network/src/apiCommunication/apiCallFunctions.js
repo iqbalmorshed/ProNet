@@ -1,6 +1,8 @@
-import { getUrl } from '../data/apiInfo'
+//import { getUrl } from '../data/apiInfo'
 import axios from 'axios';
-import { postOperations, commentOperations, statOperations } from '../data/apiOperations'
+import { operationToApi } from '../data/apiInfo'
+import { StringFormatter } from '../utils/StringFormatter'
+import { operations } from '../data/apiOperations';
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -17,35 +19,14 @@ const callApi = async (apiUrl, method, token, data = {}) => {
     });
 }
 
-export const processPostCommentOperation = async (token, operationType, data) => {
+function getUrl(operationType, urlVariables = []) {
 
-    if (!data.hasOwnProperty('urlVariables'))
-        data.urlVariables = []
-
-    if (operationType === postOperations.POST_LIST){
-        return callApi(getUrl(operationType, data.urlVariables), 'get', token)
-    }
-    else if (operationType === postOperations.POST_CREATE || operationType === commentOperations.COMMENT_CREATE) {
-        return callApi(getUrl(operationType, data.urlVariables), 'post', token, data.payload)
-    }
-    else if (operationType === postOperations.POST_UPDATE || operationType === commentOperations.COMMENT_UPDATE) {
-        return callApi(getUrl(operationType, data.urlVariables), 'put', token, data.payload)
-    }
-    else if (operationType === postOperations.POST_DELETE || operationType === commentOperations.COMMENT_DELETE) {
-        return callApi(getUrl(operationType, data.urlVariables), 'delete', token)
-    }
-    else {
-        throw new Error("Error: From /apiCommunction/apiCallFunction.js callPostCommentApi: callType not matched with any valid type ")
-    }
-}
-
-export const processStatOperation = async (token, operationType, data) => {
-
-    if (operationType === statOperations.SHOW_SUMMARY_STATS)
-        return callApi(getUrl(operationType, data.urlVariables), 'get', token)
+    if (urlVariables.length)
+        return StringFormatter(operationToApi[operationType].url, urlVariables[0])
     else
-        throw new Error("error in processStatOperation")
+        return StringFormatter(operationToApi[operationType].url)
 }
+
 /**
  * 
  * @param {string} token 
@@ -55,10 +36,15 @@ export const processStatOperation = async (token, operationType, data) => {
  * @param {object} data.payload - actual data that will be sent by the operation.
  */
 export const processOperation = async (token, operationType, data) => {
-    if (operationType in postOperations || operationType in commentOperations)
-        return processPostCommentOperation(token, operationType, data)
-    else if (operationType in statOperations)
-        return processStatOperation(token, operationType, data)
+
+    const dataMethod = { get: 'get', post: 'post' }
+    const operationMethod = operationToApi[operationType].method
+    
+    if (operationType in operations) {
+        if (operationMethod in dataMethod)
+            return callApi(getUrl(operationType, data.urlVariables), operationMethod, token, data.payload)
+        return callApi(getUrl(operationType, data.urlVariables), operationMethod, token)
+    }
     else {
         throw new Error("Error in processOperaiotn: operationType not found")
     }
