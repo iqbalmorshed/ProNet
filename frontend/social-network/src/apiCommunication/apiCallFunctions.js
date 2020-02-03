@@ -9,12 +9,21 @@ axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.headers.post['Content-Type'] = "application/json";
 
 const callApi = async (apiUrl, method, token, data = {}) => {
+
+    //console.log("apiUrl :", apiUrl, "method :", method, "token :", token, "data :", data)
+    if (token) {
+        return await axios({
+            url: apiUrl,
+            method: method,
+            headers: {
+                Authorization: `Token ${token}`,
+            },
+            data: data,
+        });
+    }
     return await axios({
         url: apiUrl,
         method: method,
-        headers: {
-            Authorization: `Token ${token}`,
-        },
         data: data,
     });
 }
@@ -39,7 +48,7 @@ export const processOperation = async (token, operationType, data) => {
 
     const dataMethod = { get: 'get', post: 'post' }
     const operationMethod = operationToApi[operationType].method
-    
+
     if (operationType in operations) {
         if (operationMethod in dataMethod)
             return callApi(getUrl(operationType, data.urlVariables), operationMethod, token, data.payload)
