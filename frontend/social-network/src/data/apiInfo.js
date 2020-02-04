@@ -30,7 +30,9 @@ export const operationToApi = {
     [operations.COMMENT_UPDATE]: { url: commentUrl + "detail/{0}/modify/", method: 'put' },
     [operations.COMMENT_DELETE]: { url: commentUrl + "detail/{0}/modify/", methd: 'delete' },
 
-    [operations.SHOW_SUMMARY_STATS]: { url: summaryStatUrl, method: 'get' }
+    [operations.SHOW_SUMMARY_STATS]: { url: summaryStatUrl, method: 'get' },
+    
+    [operations.PERFORM_REGISTRATION]: {url: registrationUrl, method: 'post'},
 }
 
 

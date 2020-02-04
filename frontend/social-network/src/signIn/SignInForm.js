@@ -19,17 +19,17 @@ import { authContext } from '../context/authStore'
 import Spinner from '../images/spinner'
 
 
-export default function SignInForm() {
+export default function SignInForm(props) {
   const classes = useStyles();
 
-  const [{error, loading }, authDispatch] = useContext(authContext)
+  const [{ error, loading }, authDispatch] = useContext(authContext)
   //const [loading, setLoading] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
 
   function onSubmit(event) {
-    event.preventDefault()  
+    event.preventDefault()
     attemptLogin(username, password, authDispatch)
   }
 
@@ -64,7 +64,7 @@ export default function SignInForm() {
             <span>{!!loading ? 'Please wait' : 'Sign In'}</span>
           </Button>
 
-          <Registration />
+          <Registration setShowSignUp={props.setShowSignUp} />
 
         </form>
       </div>

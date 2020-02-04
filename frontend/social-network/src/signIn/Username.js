@@ -15,15 +15,15 @@ function Username(props) {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
             value={username}
             onChange={handleChange}
-            error={error? true:false}
-            helperText={"username and/or password is correct"}
+            error={error ? true : false}
+            helperText={"username and/or password is incorrect"}
         />
     )
 }
