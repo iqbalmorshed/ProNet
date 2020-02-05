@@ -7,15 +7,35 @@ import PostList from './PostList'
 import { postPerPage } from '../../data/apiInfo'
 
 function PostListCollectDisplay(props) {
+
+    const { username } = props
+    let operation
     const [currentPage, setCurrentPage] = React.useState(1)
+
+    if (username === '__ALL__') {
+        operation = operations.POST_LIST
+    } else {
+        operation = operations.POST_LIST_AUTHOR
+    }
+
+
     const [[isLoading, isFetchPostSuccess, isFetchPostError, postListData], setFetchPostData]
-        = useApi(operations.POST_LIST, {})
+        = useApi(operation, {})
 
     React.useEffect(() => {
-        setFetchPostData({
-            urlVariables: [currentPage],
-        })
-    }, [currentPage, setFetchPostData])
+        if (username === '__ALL__') {
+            setFetchPostData({
+                urlVariables: [currentPage],
+            })
+
+        } else {
+            setFetchPostData({
+                urlVariables: [username, currentPage],
+            })
+
+        }
+
+    }, [setFetchPostData, currentPage, username])
     //posts = ['hello world', 'what are you doing']
 
     if (isLoading) {
@@ -40,7 +60,7 @@ function PostListCollectDisplay(props) {
             }
 
             return (
-                <PostList paginationInfo={paginationInfo} >
+                <PostList paginationInfo={paginationInfo} username={username}>
                     {posts}
                 </PostList>
             )

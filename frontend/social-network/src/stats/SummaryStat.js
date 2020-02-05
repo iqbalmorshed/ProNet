@@ -13,7 +13,7 @@ function SummaryStat() {
         setSummaryStatData({
             urlVariables: [],
         })
-    }, [])
+    }, [setSummaryStatData])
 
 
 

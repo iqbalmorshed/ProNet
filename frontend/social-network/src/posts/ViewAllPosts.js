@@ -6,7 +6,7 @@ function ViewAllPosts() {
 
     //const url = getUrl(postOperations.POST_LIST) + '?page=' + currentPage
     //return <PostData currentPage={currentPage} setCurrentPage={setCurrentPage} url={url} />
-    return <PostListCollectDisplay />
+    return <PostListCollectDisplay username={'__ALL__'} />
 }
 
 export default ViewAllPosts

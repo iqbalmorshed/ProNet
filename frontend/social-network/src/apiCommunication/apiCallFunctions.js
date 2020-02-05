@@ -29,11 +29,7 @@ const callApi = async (apiUrl, method, token, data = {}) => {
 }
 
 function getUrl(operationType, urlVariables = []) {
-
-    if (urlVariables.length)
-        return StringFormatter(operationToApi[operationType].url, urlVariables[0])
-    else
-        return StringFormatter(operationToApi[operationType].url)
+    return StringFormatter(operationToApi[operationType].url, ...urlVariables)
 }
 
 /**
@@ -46,7 +42,7 @@ function getUrl(operationType, urlVariables = []) {
  */
 export const processOperation = async (token, operationType, data) => {
 
-    const dataMethod = { get: 'get', post: 'post' }
+    const dataMethod = { get: 'get', post: 'post', put: 'put' }
     const operationMethod = operationToApi[operationType].method
 
     if (operationType in operations) {

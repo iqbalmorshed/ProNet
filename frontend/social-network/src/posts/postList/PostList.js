@@ -15,6 +15,12 @@ export default function PostList(props) {
   const [newPost,] = newPostState
   const posts = props.children;
 
+  let heading
+  if (props.username === '__ALL__') {
+    heading = "All posts from all users"
+  } else {
+    heading = `All posts from ${props.username}`
+  }
 
   return (
     <Grid item xs={12} md={8}>
@@ -26,7 +32,7 @@ export default function PostList(props) {
       }
 
       <Typography variant="h6" gutterBottom>
-        All posts from all users
+        {heading}
       </Typography>
       <Divider />
 

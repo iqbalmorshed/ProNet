@@ -11,10 +11,11 @@ class FolloweeSerializer(serializers.ModelSerializer):
     followee = followee_username
     profile_url = serializers.HyperlinkedRelatedField(
         view_name='profile_detail', read_only=True, lookup_field='username', source='followee')
+    since = serializers.ReadOnlyField(source='created_at.year')
 
     class Meta:
         model = Connection
-        fields = ['followee', 'profile_url', 'created_at', ]
+        fields = ['followee', 'profile_url', 'since', ]
 
 
 class FollowerSerializer(serializers.ModelSerializer):
@@ -22,10 +23,11 @@ class FollowerSerializer(serializers.ModelSerializer):
     follower = follower_username
     profile_url = serializers.HyperlinkedRelatedField(
         view_name='profile_detail', read_only=True, lookup_field='username', source='follower')
+    since = serializers.ReadOnlyField(source='created_at.year')
 
     class Meta:
         model = Connection
-        fields = ['follower', 'profile_url', 'created_at', ]
+        fields = ['follower', 'profile_url', 'since', ]
 
 
 class FolloweeFollowerSerializer(serializers.ModelSerializer):

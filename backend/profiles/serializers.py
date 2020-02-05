@@ -34,10 +34,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     basic_info = BasicInfoSerializer(required=False)
     address = AddressSerializer(required=False)
     connections = FolloweeFollowerSerializer(read_only=True, source='*')
+    joined = serializers.ReadOnlyField(source='date_joined.year')
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email',
+        fields = ['username', 'email', 'joined',
                   'address', 'basic_info', 'connections']
         read_only_fields = ['username']
 

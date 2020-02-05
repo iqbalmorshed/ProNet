@@ -7,6 +7,7 @@ import { checkAuthStatus } from './context/auth'
 import PostPanel from './posts/PostPanel'
 import StatPanel from './stats/StatPanel'
 import { paths } from './data/layoutInfo'
+import ProfilePanel from './profile/ProfilePanel'
 
 function BaseLayout() {
 
@@ -25,6 +26,9 @@ function BaseLayout() {
                 </Route>
                 <Route path={paths.STATISTICS}>
                     <StatPanel />
+                </Route>
+                <Route path={paths.PROFILE + '/:user?'}>
+                    <ProfilePanel />
                 </Route>
             </Switch>
 

@@ -10,7 +10,7 @@ function Email(props) {
 
     const checkValidity = (e) => {
         const email = e.target.value
-        if (email.includes('@') == false) {
+        if (email.includes('@') === false) {
             setIsError(true)
             setHelperText("Email should contain @ symbol")
         }

@@ -9,6 +9,7 @@ const registrationPath = 'rest-auth/registration/'
 const postPath = 'posts/'
 const commentPath = 'comments/'
 const summaryStatPath = 'summary-stats/'
+const profilePath = 'profiles/'
 
 export const postPerPage = 4
 export const apiUrl = hostUrl + apiPath
@@ -16,6 +17,7 @@ export const loginUrl = apiUrl + loginPath
 export const logoutUrl = apiUrl + logoutPath
 export const registrationUrl = apiUrl + registrationPath
 
+const profileUrl = apiUrl + profilePath
 const postUrl = apiUrl + postPath
 const commentUrl = apiUrl + commentPath
 const summaryStatUrl = apiUrl + summaryStatPath
@@ -25,14 +27,17 @@ export const operationToApi = {
     [operations.POST_CREATE]: { url: postUrl + "create/", method: 'post' },
     [operations.POST_UPDATE]: { url: postUrl + "{0}/modify/", method: 'put' },
     [operations.POST_DELETE]: { url: postUrl + "{0}/modify/", method: 'delete' },
+    [operations.POST_LIST_AUTHOR]: { url: postUrl + '?author={0}&page={1}', method: 'get' },
 
     [operations.COMMENT_CREATE]: { url: commentUrl + "{0}/create/", method: 'post' },
     [operations.COMMENT_UPDATE]: { url: commentUrl + "detail/{0}/modify/", method: 'put' },
     [operations.COMMENT_DELETE]: { url: commentUrl + "detail/{0}/modify/", methd: 'delete' },
 
     [operations.SHOW_SUMMARY_STATS]: { url: summaryStatUrl, method: 'get' },
-    
-    [operations.PERFORM_REGISTRATION]: {url: registrationUrl, method: 'post'},
+
+    [operations.PERFORM_REGISTRATION]: { url: registrationUrl, method: 'post' },
+
+    [operations.SHOW_PROFILE]: { url: profileUrl + "{0}/", method: 'get' }
 }
 
 

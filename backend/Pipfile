@@ -17,6 +17,7 @@ django-allauth = "*"
 django-cors-headers = "*"
 drf-writable-nested = "*"
 django-annoying = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.7"

@@ -34,7 +34,6 @@ export default function SignUpForm(props) {
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2] = useState('')
   const [agreed, setAgreed] = useState(false)
-  const [error, setError] = useState(false)
 
   const [isUsernameValid, setIsUsernameValid] = useState(false)
   const [isEmailValid, setIsEmailValid] = useState(false)

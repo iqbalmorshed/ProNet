@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 
 import { authContext } from '../context/authStore'
 import SignInForm from './SignInForm'
-import SignUpForm from '../signUp/SignUpForm'
 import SignUpPanel from '../signUp/SignUpPanel'
 
 

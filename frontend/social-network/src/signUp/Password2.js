@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
@@ -8,7 +8,7 @@ function Password2(props) {
     const [isError, setIsError] = useState(false)
     const [helperText, setHelperText] = React.useState("")
 
-   
+
     const handleChange = e => {
         e.preventDefault()
         setPassword2(e.target.value)
