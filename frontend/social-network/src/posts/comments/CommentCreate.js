@@ -1,10 +1,22 @@
 import React, { useState } from 'react'
 import { Comment, Form, TextArea } from 'semantic-ui-react'
+import { red } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom'
 
 import { useApi } from '../../apiCommunication/useApi'
 import { operations } from '../../data/apiOperations'
 
+
+const useStyles = makeStyles(theme => ({
+    avatar: {
+        backgroundColor: red[500],
+    },
+}));
+
 function CommentCreate(props) {
+    const classes = useStyles();
     const [[ /*isLoading*/, isCreateSuccess, isCreateError], setCreateData]
         = useApi(operations.COMMENT_CREATE, {})
 
@@ -46,13 +58,23 @@ function CommentCreate(props) {
 
     }
 
+    const authorProfileLink = '/profile/' + author
     return (
         <Comment>
-            <Comment.Avatar as='a' src='https://react.semantic-ui.com/images/avatar/small/matt.jpg' />
+            <div className="avatar">
+                <Link to={authorProfileLink}>
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                        {author.substring(0, 2).toUpperCase()}
+                    </Avatar>
+                </Link>
+
+            </div>
             <Comment.Content>
-                <Comment.Author as='a'>{author}</Comment.Author>
+                <Comment.Author >
+                    <Link to={authorProfileLink}>{author}</Link>
+                </Comment.Author>
                 <Comment.Metadata>
-                    <span>Today at 5:42PM</span>
+                    <span>Today</span>
                 </Comment.Metadata>
                 <Comment.Text>
                     <Form onSubmit={handleOnSubmit}>

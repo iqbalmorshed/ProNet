@@ -1,20 +1,32 @@
 import React from 'react'
-import { List, Image } from 'semantic-ui-react'
+import { List} from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 function ConnectionList(props) {
     return (
         <List>
-            {props.children.map(person => (
-                <List.Item key={props.type === 'follower' ? person.follower : person.followee}>
-                    <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' />
-                    <List.Content>
-                        <List.Header as='a'>{props.type === 'follower' ? person.follower : person.followee}</List.Header>
-                        <List.Description>
-                            since {person.since}
-                        </List.Description>
-                    </List.Content>
-                </List.Item>
-            ))}
+            {props.children.map(person => {
+                const connectedPerson = props.type === 'follower' ? person.follower : person.followee
+                const connectedPersonProfile = '/profiles/' + connectedPerson
+                return (
+                    <List.Item key={connectedPerson}>
+                        {/* <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' /> */}
+                        {/* <Label circular color='red'>2</Label> */}
+                        <List.Content>
+                            <Link to={connectedPersonProfile}>
+                                <List.Header>
+
+                                    {connectedPerson}
+
+                                </List.Header>
+                            </Link>
+                            <List.Description>
+                                since {person.since}
+                            </List.Description>
+                        </List.Content>
+                    </List.Item>
+                )
+            })}
         </List>
     )
 }

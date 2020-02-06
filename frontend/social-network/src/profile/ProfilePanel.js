@@ -5,8 +5,6 @@ import { useParams, Redirect } from 'react-router-dom'
 
 import NetworkLayout from '../layout/NetworkLayout'
 import { layoutInfo } from '../data/layoutInfo'
-import { sidebarInfo } from '../data/sidebarInfo'
-import Sidebar from '../sidebar/Sidebar'
 import ViewProfile from './ViewProfile';
 import { authContext } from '../context/authStore'
 import PostListCollectDisplay from '../posts/postList/PostListCollectDisplay'

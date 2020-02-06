@@ -7,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CardHeader from '@material-ui/core/CardHeader';
 import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { Link } from 'react-router-dom'
 
 import { operations } from '../../data/apiOperations'
 import { useApi } from '../../apiCommunication/useApi'
@@ -55,12 +55,15 @@ function PostHeader(props) {
     if (isDeleteSuccess)
         setIsPostAvailable(false)
 
+    const author = post.author
+    const profilePath = '/profile/' + author
+
     return (
         <>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
-                        R
+                        {author.substring(0, 2).toUpperCase()}
                     </Avatar>
                 }
                 action={
@@ -69,7 +72,7 @@ function PostHeader(props) {
                     </IconButton>
 
                 }
-                title={post.author}
+                title={<Link to={profilePath}>{author}</Link>}
                 subheader={post.time_since_created + " days ago"}
             />
             {isDeleteError ? <div>Error: Could not delete the Post</div> : null}

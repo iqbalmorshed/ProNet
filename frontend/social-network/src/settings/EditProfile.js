@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Divider, Header, Icon, Table } from 'semantic-ui-react'
+import { Divider, Header, Icon, Button, Form, Input, Message, TextArea, } from 'semantic-ui-react'
 import Grid from '@material-ui/core/Grid';
 import {
-    Button,
-    Checkbox,
-    Form,
-    Input,
-    Radio,
-    Message,
-    TextArea,
+    
 } from 'semantic-ui-react'
 import { useApi } from '../apiCommunication/useApi';
 import { operations } from '../data/apiOperations';
 
 
 function EditProfile(props) {
-    console.log("username edit profile:", props.username)
-    const [[isGetLoading, isGetSuccess, isGetError, resultGetData], setGetData] = useApi(operations.SHOW_PROFILE, {})
-    const [[isPostLoading, isPostSuccess, isPostError, resultPostData], setPostData] = useApi(operations.EDIT_PROFILE, {})
+    //console.log("username edit profile:", props.username)
+    const [[isGetLoading, isGetSuccess, , resultGetData], setGetData] = useApi(operations.SHOW_PROFILE, {})
+    const [[, isPostSuccess, isPostError, ], setPostData] = useApi(operations.EDIT_PROFILE, {})
 
     const [email, setEmail] = useState("")
     const [intro, setIntro] = useState("")
@@ -28,7 +22,7 @@ function EditProfile(props) {
         setGetData({
             urlVariables: [props.username,],
         })
-    }, [props.username])
+    }, [props.username, setGetData])
     const handleOnSubmit = e => {
         e.preventDefault()
         setPostData({
@@ -56,7 +50,7 @@ function EditProfile(props) {
             setCountry(data.address.country)
 
         }
-    }, [isGetSuccess, isGetLoading])
+    }, [isGetSuccess, isGetLoading, resultGetData])
 
 
 

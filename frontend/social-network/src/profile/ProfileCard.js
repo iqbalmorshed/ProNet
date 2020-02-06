@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
+import { Card, Icon, Image} from 'semantic-ui-react'
 import Grid from '@material-ui/core/Grid';
 //import { List } from 'semantic-ui-react'
 import ConnectionList from './ConnectionList'
@@ -37,10 +37,10 @@ const ProfileCard = (props) => {
                 }
 
                 <Card.Content extra>
-                    <a>
+                    {/* <a> */}
                         <Icon name='user' />
                         {userInfo.connections.followers.length} Followers
-                    </a>
+                    {/* </a> */}
                 </Card.Content>
                 <Card.Content extra>
                     <ConnectionList type={'follower'}>
@@ -48,10 +48,10 @@ const ProfileCard = (props) => {
                     </ConnectionList>
                 </Card.Content>
                 <Card.Content extra>
-                    <a>
+                    {/* <a> */}
                         <Icon name='user' />
                         {userInfo.connections.followees.length} Followees
-                    </a>
+                    {/* </a> */}
                 </Card.Content>
                 <Card.Content extra>
                     <ConnectionList type={'followee'}>

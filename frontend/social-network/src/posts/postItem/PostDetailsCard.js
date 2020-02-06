@@ -60,7 +60,7 @@ export default function PostDetailsCard(props) {
         </CardContent>
 
         <CardActions disableSpacing>
-          <PostActions expansionState={[expanded, setExpanded]} />
+          <PostActions post={post} expansionState={[expanded, setExpanded]} />
         </CardActions>
 
         <Collapse in={expanded} timeout="auto" unmountOnExit>
