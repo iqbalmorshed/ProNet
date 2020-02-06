@@ -22,6 +22,8 @@ export default function PostList(props) {
     heading = `All posts from ${props.username}`
   }
 
+  const nPosts = posts.length
+
   return (
     <Grid item xs={12} md={8}>
 
@@ -31,21 +33,28 @@ export default function PostList(props) {
           : null
       }
 
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h5" gutterBottom>
         {heading}
       </Typography>
       <Divider />
 
-      <Grid container spacing={2}>
-        {posts.map(post => (
-          <PostDetailsCard post={post} key={post.id} />
-        ))}
+      {
+        nPosts ?
+          <Grid container spacing={2}>
+            {posts.map(post => (
+              <PostDetailsCard post={post} key={post.id} />
+            ))}
 
-        <Divider />
-        <Grid item>
-          <PostPagination paginationInfo={props.paginationInfo} />
-        </Grid>
-      </Grid>
+            <Divider />
+            <Grid item>
+              <PostPagination paginationInfo={props.paginationInfo} />
+            </Grid>
+          </Grid>
+          : <Typography variant="h6" gutterBottom>
+            No Posts to show
+            </Typography>
+      }
+
 
 
 

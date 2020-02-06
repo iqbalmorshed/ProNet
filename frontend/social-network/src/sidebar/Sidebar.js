@@ -31,7 +31,7 @@ export default function Sidebar(props) {
 
       <TimerDisplay info={{title, description}}/>
       
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+      {/* <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Archives
       </Typography>
       {archives.map(archive => (
@@ -52,7 +52,7 @@ export default function Sidebar(props) {
             <Grid item>{network.name}</Grid>
           </Grid>
         </Link>
-      ))}
+      ))} */}
     </Grid>
   );
 }

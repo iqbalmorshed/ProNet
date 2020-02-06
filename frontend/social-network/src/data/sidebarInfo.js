@@ -4,9 +4,9 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 
 
 export const sidebarInfo = {
-    title: 'About',
+    title: 'Unlock the door of new experience!',
     description:
-        'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+        'Exciting features are awaiting in your doorstep. Just sign in to enjoy all the awesome feautures of ProNet.',
     archives: [
         { title: 'March 2020', url: '#' },
         { title: 'February 2020', url: '#' },

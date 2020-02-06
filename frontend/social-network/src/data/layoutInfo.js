@@ -2,14 +2,16 @@ export const paths = {
   HOME: '/',
   STATISTICS: '/statistics',
   PROFILE: '/profile',
+  SETTINGS: '/settings',
 }
 const sections = [
   { title: 'Home', path: paths.HOME },
   { title: 'My Profile', path: paths.PROFILE },
-  { title: 'My Posts', path: '#' },
+  //{ title: 'My Posts', path: '#' },
   { title: 'My Statistics', path: paths.STATISTICS },
+  { title: 'Settings', path: paths.SETTINGS },
   { title: 'About', path: '#' },
-  { title: 'Settings', path: '#' },
+  
   //{ title: 'Favorite Posts', path: '#' },
   // { title: 'Health', url: '#' },
   // { title: 'Style', url: '#' },

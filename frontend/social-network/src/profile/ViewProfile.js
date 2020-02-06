@@ -6,7 +6,7 @@ import { operations } from '../data/apiOperations';
 
 function ViewProfile(props) {
 
-    const { username } = props
+    const { profileUsername, currentUsername } = props
 
     const [[isLoading, isSuccess, isError, resultData], setData] = useApi(
         operations.SHOW_PROFILE, {}
@@ -14,12 +14,12 @@ function ViewProfile(props) {
 
     useEffect(() => {
         setData({
-            urlVariables: [username],
+            urlVariables: [profileUsername],
         })
-    }, [username , setData])
+    }, [profileUsername, setData])
 
     if (isSuccess) {
-        return <ProfileCard data={resultData} />
+        return <ProfileCard data={resultData} currentUsername={currentUsername} />
     }
 
     if (isError) {

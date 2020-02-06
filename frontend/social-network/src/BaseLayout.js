@@ -8,6 +8,7 @@ import PostPanel from './posts/PostPanel'
 import StatPanel from './stats/StatPanel'
 import { paths } from './data/layoutInfo'
 import ProfilePanel from './profile/ProfilePanel'
+import SettingsPanel from './settings/SettingsPanel'
 
 function BaseLayout() {
 
@@ -29,6 +30,9 @@ function BaseLayout() {
                 </Route>
                 <Route path={paths.PROFILE + '/:user?'}>
                     <ProfilePanel />
+                </Route>
+                <Route path={paths.SETTINGS}>
+                    <SettingsPanel />
                 </Route>
             </Switch>
 

@@ -10,6 +10,7 @@ const postPath = 'posts/'
 const commentPath = 'comments/'
 const summaryStatPath = 'summary-stats/'
 const profilePath = 'profiles/'
+const connectionPath = 'connections/'
 
 export const postPerPage = 4
 export const apiUrl = hostUrl + apiPath
@@ -21,6 +22,7 @@ const profileUrl = apiUrl + profilePath
 const postUrl = apiUrl + postPath
 const commentUrl = apiUrl + commentPath
 const summaryStatUrl = apiUrl + summaryStatPath
+const connectionUrl = apiUrl + connectionPath
 
 export const operationToApi = {
     [operations.POST_LIST]: { url: postUrl + '?page={0}', method: 'get' },
@@ -37,7 +39,11 @@ export const operationToApi = {
 
     [operations.PERFORM_REGISTRATION]: { url: registrationUrl, method: 'post' },
 
-    [operations.SHOW_PROFILE]: { url: profileUrl + "{0}/", method: 'get' }
+    [operations.SHOW_PROFILE]: { url: profileUrl + "{0}/", method: 'get' },
+    [operations.EDIT_PROFILE]: { url: profileUrl + "{0}/", method: 'put' },
+
+    [operations.FOLLOW]: { url: connectionUrl + 'follow/', method: 'post' },
+    [operations.UNFOLLOW]: { url: connectionUrl + 'unfollow/{0}/', method: 'delete' },
 }
 
 

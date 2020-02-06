@@ -1,14 +1,16 @@
 import React from 'react'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import Grid from '@material-ui/core/Grid';
 //import { List } from 'semantic-ui-react'
 import ConnectionList from './ConnectionList'
+import FollowUnfollow from './FollowUnfollow';
 
 
 const ProfileCard = (props) => {
 
     //console.log(props.data)
-    const userInfo = props.data
+    const { data, currentUsername } = props
+    const userInfo = data
     return (
         <Grid item xs={12} md={4}>
             <Card>
@@ -28,6 +30,12 @@ const ProfileCard = (props) => {
                         <b>Email: </b>{userInfo.email}
                     </Card.Description>
                 </Card.Content>
+                {
+                    userInfo.username !== currentUsername ?
+                        <FollowUnfollow userInfo={userInfo} currentUsername={currentUsername} />
+                        : null
+                }
+
                 <Card.Content extra>
                     <a>
                         <Icon name='user' />
