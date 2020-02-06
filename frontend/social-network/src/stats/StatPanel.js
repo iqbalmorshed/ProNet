@@ -1,19 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Grid from '@material-ui/core/Grid';
 
 import { Redirect } from 'react-router-dom'
 
-import { authContext } from '../context/authStore'
 import NetworkLayout from '../layout/NetworkLayout'
 import { layoutInfo } from '../data/layoutInfo'
 import { sidebarInfo } from '../data/sidebarInfo'
 import Sidebar from '../sidebar/Sidebar'
 import ViewAllStats from './ViewAllStats';
 
-function StatPanel() {
-    const [{ token, },] = useContext(authContext)
-
-    if (!token) {
+function StatPanel(props) {
+    const { token, loading } = props.authState
+    
+    if (loading === false && !token) {
         return <Redirect to='/' />
     }
 

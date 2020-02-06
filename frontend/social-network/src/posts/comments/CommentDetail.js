@@ -3,7 +3,6 @@ import { Comment, Form, TextArea } from 'semantic-ui-react'
 import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import {Link} from 'react-router-dom'
 
 import ReplyList from '../postItem/ReplyList'
 import { useApi } from '../../apiCommunication/useApi'
@@ -86,28 +85,18 @@ function CommentDetail(props) {
 
     return (
         <Comment>
-            {/* <Comment.Avatar >
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                    {comment.author.substring(0, 2).toUpperCase()}
-                </Avatar>
-            </Comment.Avatar> */}
-            {/* <Comment.Avatar >
-            <Label circular color='red'>
-                2
-            </Label>
-            </Comment.Avatar> */}
-            {/* <Label circular color='red'>
-                2
-            </Label> */}
+            
             <div className="avatar">
                 <Avatar aria-label="recipe" className={classes.avatar}>
                     {comment.author.substring(0, 2).toUpperCase()}
                 </Avatar>
             </div>
             <Comment.Content>
-                <Comment.Author >
-                    <Link to={'/profile/'+comment.author}>{comment.author}</Link>    
-                </Comment.Author>
+                {/* <Link> */}
+                    <Comment.Author as='a' href={'/profile/'+comment.author}>
+                        {comment.author}
+                    </Comment.Author>
+                {/* </Link> */}
                 <Comment.Metadata>
                     <span>{Date(comment.created_at)}</span>
                 </Comment.Metadata>

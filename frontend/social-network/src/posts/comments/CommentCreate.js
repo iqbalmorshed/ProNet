@@ -3,7 +3,6 @@ import { Comment, Form, TextArea } from 'semantic-ui-react'
 import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import { Link } from 'react-router-dom'
 
 import { useApi } from '../../apiCommunication/useApi'
 import { operations } from '../../data/apiOperations'
@@ -62,16 +61,14 @@ function CommentCreate(props) {
     return (
         <Comment>
             <div className="avatar">
-                <Link to={authorProfileLink}>
                     <Avatar aria-label="recipe" className={classes.avatar}>
                         {author.substring(0, 2).toUpperCase()}
                     </Avatar>
-                </Link>
 
             </div>
             <Comment.Content>
-                <Comment.Author >
-                    <Link to={authorProfileLink}>{author}</Link>
+                <Comment.Author as='a' href={authorProfileLink}>
+                    {author}
                 </Comment.Author>
                 <Comment.Metadata>
                     <span>Today</span>

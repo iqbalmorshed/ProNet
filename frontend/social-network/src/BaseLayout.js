@@ -12,7 +12,7 @@ import SettingsPanel from './settings/SettingsPanel'
 
 function BaseLayout() {
 
-    const [, authDispatch] = useContext(authContext)
+    const [authState, authDispatch] = useContext(authContext)
     //checkAuthStatus(authDispatch)
     useEffect(() => {
         checkAuthStatus(authDispatch)
@@ -23,16 +23,16 @@ function BaseLayout() {
         <Router>
             <Switch>
                 <Route exact path={paths.HOME}>
-                    <PostPanel />
+                    <PostPanel authState={authState}/>
                 </Route>
                 <Route path={paths.STATISTICS}>
-                    <StatPanel />
+                    <StatPanel authState={authState}/>
                 </Route>
                 <Route path={paths.PROFILE + '/:user?'}>
-                    <ProfilePanel />
+                    <ProfilePanel authState={authState}/>
                 </Route>
                 <Route path={paths.SETTINGS}>
-                    <SettingsPanel />
+                    <SettingsPanel authState={authState}/>
                 </Route>
             </Switch>
 

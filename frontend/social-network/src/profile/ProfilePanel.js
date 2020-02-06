@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Grid from '@material-ui/core/Grid';
 
 import { useParams, Redirect } from 'react-router-dom'
@@ -6,12 +6,11 @@ import { useParams, Redirect } from 'react-router-dom'
 import NetworkLayout from '../layout/NetworkLayout'
 import { layoutInfo } from '../data/layoutInfo'
 import ViewProfile from './ViewProfile';
-import { authContext } from '../context/authStore'
 import PostListCollectDisplay from '../posts/postList/PostListCollectDisplay'
 
-function ProfilePanel() {
-
-    const [{ token, username },] = useContext(authContext)
+function ProfilePanel(props) {
+    const { loading, token, username } = props.authState
+    // const [{ token, username },] = useContext(authContext)
 
     const currentUsername = username
     let profileUsername = null
@@ -24,11 +23,11 @@ function ProfilePanel() {
         profileUsername = user
     }
 
-    if (!token) {
+    if (loading === false && !token) {
         return <Redirect to='/' />
     }
 
-    if (!profileUsername)
+    if (loading && !profileUsername)
         return <div>Loading ...</div>
 
 

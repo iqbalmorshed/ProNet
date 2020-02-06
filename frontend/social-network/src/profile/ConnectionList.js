@@ -1,5 +1,5 @@
 import React from 'react'
-import { List} from 'semantic-ui-react'
+import { List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 function ConnectionList(props) {
@@ -7,7 +7,7 @@ function ConnectionList(props) {
         <List>
             {props.children.map(person => {
                 const connectedPerson = props.type === 'follower' ? person.follower : person.followee
-                const connectedPersonProfile = '/profiles/' + connectedPerson
+                const connectedPersonProfile = '/profile/' + connectedPerson
                 return (
                     <List.Item key={connectedPerson}>
                         {/* <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' /> */}
