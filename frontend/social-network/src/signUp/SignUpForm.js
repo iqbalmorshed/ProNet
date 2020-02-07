@@ -18,6 +18,7 @@ import Password2 from './Password2'
 import Agreement from './Agreement';
 import { useApi } from '../apiCommunication/useApi';
 import { operations } from '../data/apiOperations';
+import ErrorMessage from './ErrorMessage';
 
 
 
@@ -62,6 +63,9 @@ export default function SignUpForm(props) {
   }
 
   //console.log("isLoading:",isLoading, "isSuccess:")
+  if (isError) {
+    console.log(resultData)
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -109,12 +113,15 @@ export default function SignUpForm(props) {
                 Already have an account? Sign in
               </Link>
             </Grid>
+            <Grid item>
+              {isError ? <ErrorMessage /> : null} 
+            </Grid>
           </Grid>
         </form>
       </div>
       <Box mt={5}>
         {/* <Copyright /> */}
-        {isError ? <div>{resultData}</div> : null}
+        {/* {isError ? <ErrorMessage /> : null} */}
       </Box>
     </Container>
   );

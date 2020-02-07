@@ -34,7 +34,7 @@ function Password2(props) {
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
+                id="password2"
                 autoComplete="current-password"
                 value={password2}
                 onChange={handleChange}

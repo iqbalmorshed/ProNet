@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { Message } from 'semantic-ui-react'
 
 function Confirmation(props) {
 
@@ -28,13 +29,11 @@ function Confirmation(props) {
 
 
                 <Grid container justify="flex-end">
-                    <Grid item>
-                        <Typography component="h5" variant="h6">
-                            You have successfully signed up. Please check your email and confirm your email.
-                            Then Log in.
-                        </Typography>
-
-                    </Grid>
+                    <Message
+                        success
+                        header='Your user registration was successful'
+                        content='You may now log-in with the username you have chosen'
+                    />
                     <Grid item>
                         <Link href="" variant="body2" onClick={() => { setShowSignUp(false) }}>
                             Already have an account? Sign in

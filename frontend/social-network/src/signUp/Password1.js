@@ -8,11 +8,11 @@ function Password1(props) {
     const [isError, setIsError] = useState(false)
     const [helperText, setHelperText] = useState("")
 
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         //console.log("password1 :", password1)
-        
-    },[password1])
+
+    }, [password1])
 
     const handleChange = e => {
         setPassword1(e.target.value)
@@ -38,7 +38,7 @@ function Password1(props) {
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
+                id="password1"
                 autoComplete="current-password"
                 value={password1}
                 onChange={handleChange}
