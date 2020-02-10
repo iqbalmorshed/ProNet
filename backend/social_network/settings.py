@@ -25,7 +25,7 @@ SECRET_KEY = 'v*rneu(#oycc8c-$r#4!g*-yz1hh6hq^l8mm^la*h9l0wklpfq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 
 
 # Application definition

@@ -1,7 +1,7 @@
 import { operations } from './apiOperations'
 
 
-const hostUrl = 'http://127.0.0.1:8000/'
+const hostUrl = 'http://0.0.0.0:8001/'
 const apiPath = 'api/v1/'
 const loginPath = 'rest-auth/login/'
 const logoutPath = 'rest-auth/logout/'
