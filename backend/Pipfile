@@ -9,7 +9,7 @@ pylint = "*"
 rope = "*"
 
 [packages]
-django = "==3.0.1"
+django = "==3.0.3"
 djangorestframework = "*"
 markdown = "*"
 django-rest-auth = "*"
