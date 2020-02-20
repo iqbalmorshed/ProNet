@@ -8,8 +8,13 @@ urlpatterns = [
     path('post-stats/', include('post_stats.urls')),
     path('summary-stats/', include('summary_stats.urls')),
     path('connections/', include('connections.urls')),
-    
-    path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+
+
+    # path('rest-auth/', include('rest_auth.urls')),
+    # path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    # path('accounts/', include('allauth.urls')),
+
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
 
 ]

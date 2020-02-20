@@ -20,6 +20,12 @@ django-annoying = "*"
 django-filter = "*"
 wrapt = "==1.12.0"
 idna = "==2.8"
+djoser = "*"
+drf-yasg = "*"
+coreapi = "*"
+pyyaml = "*"
+django-templated-mail = "*"
+python-decouple = "*"
 
 [requires]
 python_version = "3.7"

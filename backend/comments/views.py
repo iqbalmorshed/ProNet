@@ -28,7 +28,7 @@ class CommentCreate(generics.CreateAPIView):
             id=post_id), author=self.request.user)
 
     def get_serializer_context(self):
-        return {"post_id": self.kwargs['post_id']}
+        return {'post_id': self.kwargs.get('post_id')}
 
 
 class CommentDetail(generics.RetrieveAPIView):
