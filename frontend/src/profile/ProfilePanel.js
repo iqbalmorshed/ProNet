@@ -17,7 +17,7 @@ function ProfilePanel(props) {
 
     let { user } = useParams();
 
-    if (typeof user === 'undefined') {
+    if (typeof user === undefined) {
         profileUsername = currentUsername
     } else {
         profileUsername = user

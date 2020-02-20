@@ -31,8 +31,8 @@ function Confirmation(props) {
                 <Grid container justify="flex-end">
                     <Message
                         success
-                        header='Your user registration was successful'
-                        content='You may now log-in with the username you have chosen'
+                        header='Your have successfully registered'
+                        content='Please check your email and click the account activation link before Sign in.'
                     />
                     <Grid item>
                         <Link href="" variant="body2" onClick={() => { setShowSignUp(false) }}>

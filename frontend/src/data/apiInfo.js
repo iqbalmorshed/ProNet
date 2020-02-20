@@ -3,9 +3,10 @@ import { operations } from './apiOperations'
 
 const hostUrl = 'http://0.0.0.0:8000/'
 const apiPath = 'api/v1/'
-const loginPath = 'rest-auth/login/'
-const logoutPath = 'rest-auth/logout/'
-const registrationPath = 'rest-auth/registration/'
+const authPath = 'auth/'
+const loginPath = 'token/login/'
+const logoutPath = 'token/logout/'
+const registrationPath = 'users/'
 const postPath = 'posts/'
 const commentPath = 'comments/'
 const summaryStatPath = 'summary-stats/'
@@ -14,9 +15,9 @@ const connectionPath = 'connections/'
 
 export const postPerPage = 4
 export const apiUrl = hostUrl + apiPath
-export const loginUrl = apiUrl + loginPath
-export const logoutUrl = apiUrl + logoutPath
-export const registrationUrl = apiUrl + registrationPath
+export const loginUrl = apiUrl + authPath+ loginPath
+export const logoutUrl = apiUrl + authPath+ logoutPath
+export const registrationUrl = apiUrl + authPath + registrationPath
 
 const profileUrl = apiUrl + profilePath
 const postUrl = apiUrl + postPath

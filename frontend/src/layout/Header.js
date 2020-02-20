@@ -44,9 +44,9 @@ export default function Header(props) {
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
         <Button size="small">Hi, {user_name}!</Button>
-        
-        
-        
+
+
+
         <Typography
           component="h2"
           variant="h5"
@@ -61,25 +61,25 @@ export default function Header(props) {
           {/* <SearchIcon /> */}
         </IconButton>
 
-        {!token? null: 
+        {!token ? null :
           <>
             <Button
-            variant="outlined"
-            size="small"
-            onClick={() => {
-              attemptLogout(authDispatch)
-            }}
-          >
-            Logout
+              variant="outlined"
+              size="small"
+              onClick={() => {
+                attemptLogout(authDispatch, token)
+              }}
+            >
+              Logout
           </Button>
             <Button variant="outlined" size="small" onClick={() => setNewPost(true)}>
-            New Post
+              New Post
           </Button>
           </>
-            
+
         }
 
-        
+
 
 
       </Toolbar>

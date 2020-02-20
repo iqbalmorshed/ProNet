@@ -52,8 +52,8 @@ export default function SignUpForm(props) {
       payload: {
         username,
         email,
-        password1,
-        password2,
+        password: password1,
+        re_password: password2,
       }
     })
   }
@@ -114,7 +114,7 @@ export default function SignUpForm(props) {
               </Link>
             </Grid>
             <Grid item>
-              {isError ? <ErrorMessage /> : null} 
+              {isError ? <ErrorMessage /> : null}
             </Grid>
           </Grid>
         </form>

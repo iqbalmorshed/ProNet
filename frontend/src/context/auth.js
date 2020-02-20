@@ -43,41 +43,49 @@ export const attemptLogin = (username, password, authDispatch) => {
             password: password,
         }
     )
-    .then(
-        res => {
-            const token = res.data.key
-            localStorage.setItem('token', token)
-            localStorage.setItem('username', username)
-            authDispatch(authSuccess(token, username))
-        }
-    )
-    .catch(
-        err => {
-            console.log("error:", err)
-            authDispatch(authFail(err))
-        }
-    )
+        .then(
+            res => {
+                //const token = res.data.key
+                const token = res.data.auth_token
+                localStorage.setItem('token', token)
+                localStorage.setItem('username', username)
+                authDispatch(authSuccess(token, username))
+            }
+        )
+        .catch(
+            err => {
+                console.log("error:", err)
+                authDispatch(authFail(err))
+            }
+        )
 
 }
 
-export const attemptLogout = (authDispatch) => {
+export const attemptLogout = (authDispatch, token) => {
 
-    axios.post(
-        logoutUrl
-    )
-    .then(
-        res => {
-            localStorage.removeItem('token')
-            localStorage.removeItem('username')
-            authDispatch(authLogout())
-        }
-    )
-    .catch(
-        err => {
-            console.log("Could not log out properly")
-            //authDispatch(authFail(err))
-        }
-    )
+    axios({
+        method: 'post',
+        url: logoutUrl,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`,
+        },
+    })
+        .then(
+            res => {
+                localStorage.removeItem('token')
+                localStorage.removeItem('username')
+                authDispatch(authLogout())
+            }
+        )
+        .catch(
+            err => {
+                console.log("Could not log out properly")
+                localStorage.removeItem('token')
+                localStorage.removeItem('username')
+                //authDispatch(authFail(err))
+            }
+        )
     // localStorage.removeItem('token')
     // localStorage.removeItem('username')
     // authDispatch(authLogout())
@@ -85,9 +93,9 @@ export const attemptLogout = (authDispatch) => {
 
 export const checkAuthStatus = (authDispatch) => {
     const token = localStorage.getItem('token')
-    if (token===undefined){
+    if (token === undefined) {
         attemptLogout(authDispatch)
-    }else{
+    } else {
         const username = localStorage.getItem('username')
         authDispatch(authSuccess(token, username))
     }
