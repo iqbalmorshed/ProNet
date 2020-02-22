@@ -11,6 +11,7 @@ const ProfileCard = (props) => {
     //console.log(props.data)
     const { data, currentUsername } = props
     const userInfo = data
+    
     return (
         <Grid item xs={12} md={4}>
             <Card>

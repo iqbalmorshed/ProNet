@@ -11,6 +11,7 @@ function PostListCollectDisplay(props) {
     const { username } = props
     let operation
     const [currentPage, setCurrentPage] = React.useState(1)
+    //const [posts, setPosts] = React.useState([])
 
     if (username === '__ALL__') {
         operation = operations.POST_LIST
@@ -27,16 +28,13 @@ function PostListCollectDisplay(props) {
             setFetchPostData({
                 urlVariables: [currentPage],
             })
-
         } else {
             setFetchPostData({
                 urlVariables: [username, currentPage],
             })
-
         }
 
     }, [setFetchPostData, currentPage, username])
-    //posts = ['hello world', 'what are you doing']
 
     if (isLoading) {
         return <PostPlaceholder />
@@ -52,6 +50,7 @@ function PostListCollectDisplay(props) {
             //console.log("success")
             const data = postListData
             const posts = data.results
+            //console.log(posts)
             const paginationInfo = {
                 totalItems: data.count,
                 totalPages: Math.ceil(data.count / postPerPage),

@@ -2,13 +2,10 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 //import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-// import Typography from '@material-ui/core/Typography';
-// import Link from '@material-ui/core/Link';
 
-import SignInPanel from '../signIn/SignInPanel'
-import TimerDisplay from './TimerDisplay'
+import Advertise from "./Advertise";
 import { authContext } from '../context/authStore'
+import AuthenticationPanel from './AuthenticationPanel';
 
 // const useStyles = makeStyles(theme => ({
 //   sidebarAboutBox: {
@@ -23,39 +20,13 @@ import { authContext } from '../context/authStore'
 export default function Sidebar(props) {
   const [{ token },] = useContext(authContext)
   //const classes = useStyles();
-  const {  description, title } = props.sidebarInfo;
+  const { description, title } = props.sidebarInfo;
 
   return (
     <Grid item xs={12} md={4}>
-      <Paper elevation={0}>
-        <SignInPanel />
-      </Paper>
-
-      {!token ? <TimerDisplay info={{ title, description }} /> : null}
-
-
-      {/* <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Archives
-      </Typography>
-      {archives.map(archive => (
-        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
-          {archive.title}
-        </Link>
-      ))}
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Social
-      </Typography>
-
-      {social.map(network => (
-        <Link display="block" variant="body1" href="#" key={network.name}>
-          <Grid container direction="row" spacing={1} alignItems="center">
-            <Grid item>
-              <network.icon />
-            </Grid>
-            <Grid item>{network.name}</Grid>
-          </Grid>
-        </Link>
-      ))} */}
+      {props.children}
+      <AuthenticationPanel />
+      <Advertise info={{ title, description }} token={token}/>
     </Grid>
   );
 }

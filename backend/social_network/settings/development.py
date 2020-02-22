@@ -4,8 +4,8 @@ DEBUG = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-
+DOMAIN = 'localhost'
+SITE_NAME = config('SITE_NAME')
 
 
 

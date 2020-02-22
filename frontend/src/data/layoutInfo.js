@@ -3,6 +3,7 @@ export const paths = {
   STATISTICS: '/statistics',
   PROFILE: '/profile',
   SETTINGS: '/settings',
+  ACTIVATION: '/activate'
 }
 const sections = [
   { title: 'Home', path: paths.HOME },
@@ -11,7 +12,7 @@ const sections = [
   { title: 'My Statistics', path: paths.STATISTICS },
   { title: 'Settings', path: paths.SETTINGS },
   { title: 'About', path: '#' },
-  
+
   //{ title: 'Favorite Posts', path: '#' },
   // { title: 'Health', url: '#' },
   // { title: 'Style', url: '#' },

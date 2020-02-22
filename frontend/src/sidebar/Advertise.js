@@ -12,12 +12,16 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function TimerDisplay(props) {
-    
+function Advertise(props) {
+
 
     const classes = useStyles();
     const { title, description } = props.info
     //console.log("title", title, description)
+
+    if (props.token)
+        return null
+
     return (
         <Paper elevation={0} className={classes.sidebarAboutBox}>
             <Typography variant="h6" gutterBottom>
@@ -28,4 +32,4 @@ function TimerDisplay(props) {
     )
 }
 
-export default TimerDisplay
+export default Advertise

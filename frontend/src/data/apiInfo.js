@@ -6,6 +6,7 @@ const apiPath = 'api/v1/'
 const authPath = 'auth/'
 const loginPath = 'token/login/'
 const logoutPath = 'token/logout/'
+const activationPath = 'users/activation/'
 const registrationPath = 'users/'
 const postPath = 'posts/'
 const commentPath = 'comments/'
@@ -15,15 +16,17 @@ const connectionPath = 'connections/'
 
 export const postPerPage = 4
 export const apiUrl = hostUrl + apiPath
-export const loginUrl = apiUrl + authPath+ loginPath
-export const logoutUrl = apiUrl + authPath+ logoutPath
+export const loginUrl = apiUrl + authPath + loginPath
+export const logoutUrl = apiUrl + authPath + logoutPath
 export const registrationUrl = apiUrl + authPath + registrationPath
+
 
 const profileUrl = apiUrl + profilePath
 const postUrl = apiUrl + postPath
 const commentUrl = apiUrl + commentPath
 const summaryStatUrl = apiUrl + summaryStatPath
 const connectionUrl = apiUrl + connectionPath
+const activationUrl = apiUrl + authPath + activationPath
 
 export const operationToApi = {
     [operations.POST_LIST]: { url: postUrl + '?page={0}', method: 'get' },
@@ -45,6 +48,8 @@ export const operationToApi = {
 
     [operations.FOLLOW]: { url: connectionUrl + 'follow/', method: 'post' },
     [operations.UNFOLLOW]: { url: connectionUrl + 'unfollow/{0}/', method: 'delete' },
+
+    [operations.ACCOUNT_ACTIVATE]: { url: activationUrl, method: 'post' },
 }
 
 

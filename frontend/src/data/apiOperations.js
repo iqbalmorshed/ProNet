@@ -18,4 +18,6 @@ export const operations = {
 
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
+
+    ACCOUNT_ACTIVATE: 'ACCOUNT_ACTIVATE',
 }

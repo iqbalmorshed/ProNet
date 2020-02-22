@@ -9,6 +9,7 @@ import StatPanel from './stats/StatPanel'
 import { paths } from './data/layoutInfo'
 import ProfilePanel from './profile/ProfilePanel'
 import SettingsPanel from './settings/SettingsPanel'
+import AccountActivation from './signUp/AccountActivation'
 
 function BaseLayout() {
 
@@ -33,6 +34,9 @@ function BaseLayout() {
                 </Route>
                 <Route path={paths.SETTINGS}>
                     <SettingsPanel authState={authState}/>
+                </Route>
+                <Route path={paths.ACTIVATION+'/:uid/:token'}>
+                    <AccountActivation authState={authState}/>
                 </Route>
             </Switch>
 
