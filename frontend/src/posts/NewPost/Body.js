@@ -5,7 +5,7 @@ import { useApi } from '../../apiCommunication/useApi'
 import { operations } from '../../data/apiOperations'
 
 function Body(props) {
-    const [[ /*isLoading*/, isSuccess, isError], setData]
+    const [[ /*isLoading*/, isSuccess, isError, responseData], setData]
         = useApi(operations.POST_CREATE, {})
     const [newPost, setNewPost] = props.newPostState
     const [title, setTitle] = React.useState("")
@@ -25,8 +25,15 @@ function Body(props) {
         setNewPost(false)
     }
 
-    if (isSuccess && newPost)
+    if (isSuccess && newPost) {
+        console.log(responseData)
+        props.setPosts(prevPosts => {
+            const newArr = [responseData]
+            return newArr.concat(prevPosts)
+        })
         setNewPost(false)
+    }
+
 
     return (
         // semantic UI based form

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -13,7 +13,12 @@ export default function PostList(props) {
 
   const { newPostState } = React.useContext(componentStateContext)
   const [newPost,] = newPostState
-  const posts = props.children;
+  const [posts, setPosts] = useState([])
+  //const posts = props.children;
+
+  useEffect(() => {
+    setPosts(props.children)
+  }, [props.children])
 
   let heading
   if (props.username === '__ALL__') {
@@ -23,13 +28,13 @@ export default function PostList(props) {
   }
 
   const nPosts = posts.length
-
+  //console.log(posts)
   return (
     <Grid item xs={12} md={8}>
 
       {
         newPost ?
-          <NewPostContainer newPostState={newPostState} />
+          <NewPostContainer newPostState={newPostState} setPosts={setPosts}/>
           : null
       }
 

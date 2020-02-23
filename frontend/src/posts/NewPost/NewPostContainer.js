@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
 
 function NewPostContainer(props) {
   const [{ username },] = React.useContext(authContext)
-  const { newPostState } = React.useContext(componentStateContext)
   const classes = useStyles()
 
   return (
@@ -26,7 +25,7 @@ function NewPostContainer(props) {
       <Header loggedInUser={username} />
 
       <CardContent>
-        <Body newPostState={newPostState}/>
+        <Body newPostState={props.newPostState} setPosts={props.setPosts}/>
       </CardContent>
 
       {/* <CardActions disableSpacing>
