@@ -3,88 +3,113 @@ import { Card, Button } from 'semantic-ui-react'
 import { useApi } from '../apiCommunication/useApi'
 import { operations } from '../data/apiOperations'
 
-let isFollowingUpdated = true
+
+// let visibleText = ""
+// let hiddenText = ""
+// let buttonColor = "orange"
 
 function FollowUnfollow(props) {
 
 
 
-    const { userInfo, currentUsername } = props
+    const { userInfo, currentUsername, setFollowers } = props
 
-    const [isFollowing, setIsfollowing] = useState(() => {
+    const [isFollowing, setIsFollowing] = useState(false)
+
+    useEffect(() => {
+        
         const followerList = userInfo.connections.followers.map(follower => follower.follower)
-        if (followerList.includes(currentUsername))
-            return true
-        return false
+        if (followerList.includes(currentUsername)) {
+            setIsFollowing(true)
+        } else {
+            setIsFollowing(false)
+        }
 
-    })
+    }, [currentUsername, userInfo.connections.followers])
 
-    const [visibleText, setVisibleText] = useState("")
-    const [hiddenText, setHiddenText] = useState("")
-    const [buttonColor, setButtonColor] = useState("orange")
+
     //hiddenText, buttonColor
 
-    const [[isFollowLoading, isFollowSuccess, isFollowError,], setFollowData]
+    const [[, , isFollowError,], setFollowData]
         = useApi(operations.FOLLOW, {})
-    const [[isUnfollowLoading, isUnfollowSuccess, isUnfollowError,], setUnfollowData]
+    const [[, , isUnfollowError,], setUnfollowData]
         = useApi(operations.UNFOLLOW, {})
 
     const handleOnClick = e => {
         e.preventDefault()
-        if(isFollowingUpdated){
-            if (isFollowing) {
-                setUnfollowData({
-                    urlVariables: [userInfo.username]
-                })
-            } else {
-                setFollowData({
-                    payload: {
-                        followee: userInfo.username,
-                    }
-                })
-            }
-            isFollowingUpdated = false
+        if (isFollowing) {
+            setUnfollowData({
+                urlVariables: [userInfo.username]
+            })
+            setFollowers(prevFollowers => {
+                const newFollowers = [...prevFollowers]
+                return newFollowers.filter(follower => follower.follower !== currentUsername)
+            })
+            setIsFollowing(false)
+
+        } else {
+            setFollowData({
+                payload: {
+                    followee: userInfo.username,
+                }
+            })
+            setFollowers(prevFollowers => {
+                const newFollowers = [{
+                    follower: currentUsername,
+                    since: new Date().getFullYear(),
+                }]
+                return newFollowers.concat(prevFollowers)
+            })
+            setIsFollowing(true)
         }
     }
 
-    useEffect(() => {
-        if (isFollowSuccess)
-            setIsfollowing(true)
-    }, [isFollowSuccess, isUnfollowSuccess])
+    // useEffect(() => {
 
-    useEffect(() => {
-        if (isUnfollowSuccess)
-            setIsfollowing(false)
-    }, [isUnfollowSuccess])
+    //     console.log("useEffect 2 executed")
 
-    useEffect(() => {
-        isFollowingUpdated = true
+    //     if (isFollowing) {
 
-        if (isFollowing) {
-            setVisibleText("Following")
-            setHiddenText("Unfollow")
-            setButtonColor("green")
-        } else {
-            setVisibleText("Follow")
-            setHiddenText("Follow")
-            setButtonColor("blue")
+    //         visibleText = "Following"
+    //         hiddenText = "Unfollow"
+    //         buttonColor = "green"
+    //     } else {
 
-        }
-    }, [isFollowing])
+    //         visibleText = "Follow"
+    //         hiddenText = "Follow"
+    //         buttonColor = "blue"
+    //     }
+    // }, [isFollowing])
+
+    // console.log("visibleText:", visibleText, "Hidden Text:", hiddenText, "buutoncolor:", buttonColor)
+
 
     return (
+
         <Card.Content extra>
-            <Button disabled={isFollowLoading || isUnfollowLoading}
+
+            {/* <Button disabled={isFollowLoading || isUnfollowLoading}
                 //primary
                 animated='fade'
                 onClick={handleOnClick}
                 color={isFollowLoading || isUnfollowLoading
                     ? 'grey'
                     : buttonColor}
-            >
-                <Button.Content visible>{visibleText}</Button.Content>
-                <Button.Content hidden>{hiddenText}</Button.Content>
-            </Button>
+            > */}
+            {
+                isFollowing ?
+                    <Button animated='fade' color="green" onClick={handleOnClick}>
+                        <Button.Content visible>Following</Button.Content>
+                        <Button.Content hidden>Unfollow</Button.Content>
+                    </Button>
+                    :
+                    <Button animated='fade' color="blue" onClick={handleOnClick}>
+                        <Button.Content visible>Follow</Button.Content>
+                        <Button.Content hidden>Follow</Button.Content>
+                    </Button>
+            }
+
+
             {isFollowError || isUnfollowError ? <div>Operation Unsuccessfull. Try again</div> : null}
         </Card.Content>
     )

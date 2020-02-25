@@ -1,5 +1,5 @@
-import React from 'react'
-import { Card, Icon, Image} from 'semantic-ui-react'
+import React, { useState, useEffect } from 'react'
+import { Card, Icon, Image } from 'semantic-ui-react'
 import Grid from '@material-ui/core/Grid';
 //import { List } from 'semantic-ui-react'
 import ConnectionList from './ConnectionList'
@@ -10,8 +10,13 @@ const ProfileCard = (props) => {
 
     //console.log(props.data)
     const { data, currentUsername } = props
+    const [followers, setFollowers] = useState([])
     const userInfo = data
-    
+
+    useEffect(() => {
+        setFollowers(userInfo.connections.followers)
+    }, [userInfo.connections.followers])
+
     return (
         <Grid item xs={12} md={4}>
             <Card>
@@ -33,25 +38,25 @@ const ProfileCard = (props) => {
                 </Card.Content>
                 {
                     userInfo.username !== currentUsername ?
-                        <FollowUnfollow userInfo={userInfo} currentUsername={currentUsername} />
+                        <FollowUnfollow userInfo={userInfo} currentUsername={currentUsername} setFollowers={setFollowers} />
                         : null
                 }
 
                 <Card.Content extra>
                     {/* <a> */}
-                        <Icon name='user' />
-                        {userInfo.connections.followers.length} Followers
+                    <Icon name='user' />
+                    {followers.length} Followers
                     {/* </a> */}
                 </Card.Content>
                 <Card.Content extra>
                     <ConnectionList type={'follower'}>
-                        {userInfo.connections.followers}
+                        {followers}
                     </ConnectionList>
                 </Card.Content>
                 <Card.Content extra>
                     {/* <a> */}
-                        <Icon name='user' />
-                        {userInfo.connections.followees.length} Followees
+                    <Icon name='user' />
+                    {userInfo.connections.followees.length} Followees
                     {/* </a> */}
                 </Card.Content>
                 <Card.Content extra>
