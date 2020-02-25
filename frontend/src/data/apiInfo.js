@@ -37,7 +37,7 @@ export const operationToApi = {
 
     [operations.COMMENT_CREATE]: { url: commentUrl + "{0}/create/", method: 'post' },
     [operations.COMMENT_UPDATE]: { url: commentUrl + "detail/{0}/modify/", method: 'put' },
-    [operations.COMMENT_DELETE]: { url: commentUrl + "detail/{0}/modify/", methd: 'delete' },
+    [operations.COMMENT_DELETE]: { url: commentUrl + "detail/{0}/modify/", method: 'delete' },
 
     [operations.SHOW_SUMMARY_STATS]: { url: summaryStatUrl, method: 'get' },
 

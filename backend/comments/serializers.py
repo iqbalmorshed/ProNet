@@ -13,7 +13,7 @@ class ReplyListSerilizer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['id', 'parent',
-                  'body', 'author', 'created_at']
+                  'body', 'author', 'created_at', 'updated_at']
 
 
 class CommentListSerializer(serializers.ModelSerializer):
@@ -25,7 +25,7 @@ class CommentListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['post', 'id', 'parent',
-                  'body', 'author', 'created_at', 'replies']
+                  'body', 'author', 'created_at', 'updated_at', 'replies']
 
     def get_replies(self, obj):
         if obj.is_parent:
@@ -36,7 +36,7 @@ class CommentListSerializer(serializers.ModelSerializer):
 class CommentCreateSerializer(serializers.ModelSerializer):
 
     author = author_username
-    post = serializers.ReadOnlyField(source='post.title')
+    post = serializers.ReadOnlyField(source='post.id')
 
     class Meta:
         model = Comment
@@ -64,7 +64,7 @@ class CommentDetailSerializer(serializers.ModelSerializer):
 
     author = author_username
     post = serializers.ReadOnlyField(source='post.title')
-    parent = serializers.ReadOnlyField(source='parent.id')
+    #parent = serializers.ReadOnlyField(source='parent.id')
 
     class Meta:
         model = Comment

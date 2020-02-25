@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Comment, Form, TextArea } from 'semantic-ui-react'
 import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,10 +16,10 @@ const useStyles = makeStyles(theme => ({
 
 function CommentCreate(props) {
     const classes = useStyles();
-    const [[ /*isLoading*/, isCreateSuccess, isCreateError], setCreateData]
+    const [[ /*isLoading*/, isCreateSuccess, isCreateError, responseData], setCreateData]
         = useApi(operations.COMMENT_CREATE, {})
 
-    const { postId, parentId, author } = props
+    const { postId, parentId, author, setComments } = props
 
     const [text, setText] = useState(
         props.type === 'reply' ?
@@ -54,16 +54,30 @@ function CommentCreate(props) {
         if (props.type === 'reply') {
             props.replyClickData.setReplyClicked(false)
         }
-
     }
+
+    useEffect(() => {
+        if (Object.keys(responseData).length) {
+            console.log("response data:", responseData)
+            const newComment = { ...responseData }
+            if (props.type === 'comment')
+                newComment.replies = []
+            setComments(prevComments => {
+                const newComments = [...prevComments]
+                newComments.push(newComment)
+                return newComments
+            })
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [responseData])
 
     const authorProfileLink = '/profile/' + author
     return (
         <Comment>
             <div className="avatar">
-                    <Avatar aria-label="recipe" className={classes.avatar}>
-                        {author.substring(0, 2).toUpperCase()}
-                    </Avatar>
+                <Avatar aria-label="recipe" className={classes.avatar}>
+                    {author.substring(0, 2).toUpperCase()}
+                </Avatar>
 
             </div>
             <Comment.Content>

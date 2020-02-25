@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 import { useApi } from '../../apiCommunication/useApi'
 import { operations } from '../../data/apiOperations';
@@ -73,3 +74,7 @@ function PostListCollectDisplay(props) {
 }
 
 export default PostListCollectDisplay
+
+PostListCollectDisplay.propTypes = {
+    username: PropTypes.string.isRequired
+}

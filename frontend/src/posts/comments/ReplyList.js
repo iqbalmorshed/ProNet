@@ -1,13 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Comment } from 'semantic-ui-react'
-import CommentDetail from '../comments/CommentDetail'
-import CommentCreate from '../comments/CommentCreate'
+import CommentDetail from './CommentDetail'
+import CommentCreate from './CommentCreate'
 import { authContext } from '../../context/authStore'
 
 function ReplyList(props) {
     const [{ token, username },] = useContext(authContext)
     const { replyClicked } = props.replyClickData
-    const replies = props.children
+    const [replies, setReplies] = useState([])
+
+    useEffect(() => {
+        setReplies(props.children)
+    }, [props.children])
+
+    //console.log("reply List:", replies)
+
     return (
         <Comment.Group >
             {replies.map(reply => (
@@ -22,6 +29,7 @@ function ReplyList(props) {
                         parentId={props.parentId}
                         author={username}
                         replyClickData={props.replyClickData}
+                        setComments={setReplies}
                     />
                     : null
             }

@@ -4,7 +4,7 @@ import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
-import ReplyList from '../postItem/ReplyList'
+import ReplyList from './ReplyList'
 import { useApi } from '../../apiCommunication/useApi'
 import { operations } from '../../data/apiOperations'
 import { authContext } from '../../context/authStore'
@@ -85,7 +85,7 @@ function CommentDetail(props) {
 
     return (
         <Comment>
-            
+
             <div className="avatar">
                 <Avatar aria-label="recipe" className={classes.avatar}>
                     {comment.author.substring(0, 2).toUpperCase()}
@@ -93,9 +93,9 @@ function CommentDetail(props) {
             </div>
             <Comment.Content>
                 {/* <Link> */}
-                    <Comment.Author as='a' href={'/profile/'+comment.author}>
-                        {comment.author}
-                    </Comment.Author>
+                <Comment.Author as='a' href={'/profile/' + comment.author}>
+                    {comment.author}
+                </Comment.Author>
                 {/* </Link> */}
                 <Comment.Metadata>
                     <span>{Date(comment.created_at)}</span>

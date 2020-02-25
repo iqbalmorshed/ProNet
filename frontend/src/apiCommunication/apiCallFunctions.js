@@ -12,7 +12,7 @@ const callApi = async (apiUrl, method, token, data = {}) => {
 
     //console.log("apiUrl :", apiUrl, "method :", method, "token :", token, "data :", data)
     if (token) {
-        
+
         return await axios({
             url: apiUrl,
             method: method,
@@ -22,7 +22,7 @@ const callApi = async (apiUrl, method, token, data = {}) => {
             data: data,
         });
     }
-    
+
     return await axios({
         url: apiUrl,
         method: method,
@@ -43,7 +43,7 @@ function getUrl(operationType, urlVariables = []) {
  * @param {object} data.payload - actual data that will be sent by the operation.
  */
 export const processOperation = async (token, operationType, data) => {
-    
+
     const dataMethod = { get: 'get', post: 'post', put: 'put' }
     const operationMethod = operationToApi[operationType].method
 

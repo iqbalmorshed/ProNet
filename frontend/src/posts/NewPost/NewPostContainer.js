@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Body from './Body'
 import Header from './Header'
 import {authContext} from '../../context/authStore'
-import {componentStateContext} from '../../context/componentStateStore'
 
 const useStyles = makeStyles(theme => ({
   card: {
