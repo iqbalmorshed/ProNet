@@ -16,6 +16,7 @@ function AccountActivation() {
 
     let { uid, token } = useParams();
 
+    console.log("uid:", uid, "token:",token )
     return (
         <>
             <NetworkLayout layoutInfo={layoutInfo}>

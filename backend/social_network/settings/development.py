@@ -4,19 +4,11 @@ DEBUG = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DOMAIN = 'localhost'
+DOMAIN = 'localhost:3000'
 SITE_NAME = config('SITE_NAME')
 
 
-
-
-
-
-
-
-
-
-#Settings for Rest-Auth which is no longer used.
+# Settings for Rest-Auth which is no longer used.
 
 # SITE_ID = 1
 # # Add the 'allauth' backend to AUTHENTICATION_BACKEND and keep default ModelBackend

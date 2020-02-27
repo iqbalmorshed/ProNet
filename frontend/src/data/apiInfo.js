@@ -1,7 +1,15 @@
 import { operations } from './apiOperations'
+require('dotenv').config()
 
+//const hostUrl = 'http://0.0.0.0:8000/'
+// const hostUrl = process.env.REACT_APP_API_ADDRESS === undefined ?
+//     'http://0.0.0.0:8000/'
+//     : 'http://' + process.env.REACT_APP_API_ADDRESS + '/'
 
-const hostUrl = 'http://0.0.0.0:8000/'
+const hostUrl = process.env.NODE_ENV === 'development' ?
+    process.env.REACT_APP_LOCAL_API_URL
+    : process.env.REACT_APP_PRODUCTION_API_URL
+
 const apiPath = 'api/v1/'
 const authPath = 'auth/'
 const loginPath = 'token/login/'

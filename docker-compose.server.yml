@@ -1,0 +1,20 @@
+version: '3.7'
+
+services: 
+    backend:
+        image: iqbalmorshed/pronet:backend-prod
+        container_name: pronet-backend-prod
+        ports:
+            - "8000:8000"
+        command: python3 ./manage.py runserver 0.0.0.0:8000 --settings=social_network.settings.production
+
+    frontend:
+        image: iqbalmorshed/pronet:frontend-prod
+        container_name: pronet-frontend-prod
+        ports: 
+            - '80:80'
+        # environment: 
+        #     - NODE_ENV=development
+        #     - REACT_APP_API_ADDRESS=0.0.0.0:8000
+        depends_on: 
+            - backend
